@@ -1,0 +1,441 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Koupon - Index</title>
+    <!-- meta info -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="keywords" content="Koupon HTML5 Template" />
+    <meta name="description" content="Koupon - Premiun HTML5 Template for Coupons Website">
+    <meta name="author" content="Dark Cyber" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google fonts -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/boostrap.css">
+    <link rel="stylesheet" href="css/boostrap_responsive.css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.css">
+    <!-- Font Awesome styles (icons) -->
+    <link rel="stylesheet" href="css/font_awesome.css">
+    <!-- Main Template styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- IE 8 Fallback -->
+    <!--[if lt IE 9]>
+	<link rel="stylesheet" type="text/css" href="css/ie.css" />
+<![endif]-->
+
+    <!-- Your custom styles (blank file) -->
+    <link rel="stylesheet" href="css/mystyles.css">
+</head>
+
+<body ng-app="rentalkika">
+
+
+
+
+
+    <!-- //////////////////////////////////
+//////////////MAIN HEADER///////////// 
+////////////////////////////////////-->
+    <header class="main">
+        <div class="container">
+            <div class="row">
+                <div class="span2">
+                    <a href="index.html">
+                        <img src="img/logo-small.png" alt="logo" title="logo" class="logo">
+                    </a>
+                </div>
+                <div class="span8">
+                    <!-- MAIN NAVIGATION -->
+                    <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
+                    <nav>
+                        <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
+                            <li class="active"><a href="index.html">Home</a>
+                            </li>
+                            <li><a href="#">Layanan</a>
+                                <ul>
+                                    <li><a href="sewa_mobil.html">Sewa Mobil</a>
+                                    </li>
+                                    <li><a href="#">Shuttle</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="features-typography.html">Paket Wisata</a>
+                            </li>
+                            <li><a href="blog-sidebar-right.html">Blog</a>
+                            </li>
+   								 <li><a href="#">FAQ</a>
+                            </li>
+                            <li><a class="popup-text" href="#register-partner-dialog" data-effect="mfp-move-from-top">Tertarik menjadi mitra kami?</a></li>
+                            <li><a href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- END MAIN NAVIGATION -->
+                </div>
+                <div class="span2">
+                    <!-- LOGIN REGISTER LINKS -->
+                    <ul class="login-register">
+                        <li><a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top"><i class="icon-signin"></i>Sign in</a>
+                        </li>
+                        <li><a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"><i class="icon-edit"></i>Sign up</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="password-recover-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
+        <i class="icon-retweet dialog-icon"></i>
+        <h3>Password Recovery</h3>
+        <h5>Fortgot your password? Don't worry we can deal with it</h5>
+        <div class="row-fluid">
+            <form class="dialog-form">
+                <label>E-mail</label>
+                <input type="text" placeholder="email@domain.com" class="span12">
+                <input type="submit" value="Request new password" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+    <!-- END LOGIN REGISTER LINKS CONTENT -->
+
+    <!-- PAGE TITLE -->
+    <div class="top-title-area">
+        <div class="container">
+            <h1 class="title-page">Payment</h1>
+        </div>
+    </div>
+    
+	 <div class="gap"></div>
+    <!-- END PAGE TITLE -->
+
+
+    <!-- //////////////////////////////////
+//////////////END MAIN HEADER////////// 
+////////////////////////////////////-->
+
+<!-- //////////////////////////////////
+//////////////PAGE CONTENT///////////// 
+////////////////////////////////////-->
+
+
+    <div class="container">
+        <div class="row">
+            <div class="span3 sidebar-left">
+                <h4>Payment for</h4>
+                <!-- COUPON THUMBNAIL -->
+                <a href="#" class="coupon-thumb">
+                   <img src="img/800x600.png" alt="Image Alternative text" />
+                   <div class="coupon-inner">
+                       <h5 class="coupon-title">Partner 2 Name (L 7788 X)</h5>
+                       <p class="coupon-desciption">2011 MPV </p>
+								                       
+                       <div class="coupon-meta">
+                       		<span class="coupon-time">Surabaya</span>
+                       </div>
+                       
+                   </div>
+               </a>
+               <!--
+                <div class="gap gap-small"></div>	<a class="btn btn-primary btn-block btn-large" href="#">Continue to PayPal</a>
+                <div class="gap gap-small"></div>
+                -->
+            </div>
+            <div class="span5">
+                <form action="" class="form-horizontal" ng-controller="OrderSewaController as OrderSewa">
+                    <legend>Keterangan Order</legend>
+                    
+                    <label>Tujuan Sewa</label>
+                    <select class="span5" name="tujuan_sewa">
+							<option value="">Pilih!</option>                    
+							<option ng-repeat="city in cities" value="{{ city.objectId }}">{{ city.city_name }}</option>                    
+                    </select>
+                    
+                    <label>Tanggal Sewa</label>
+                    <input type="text" class="span5" id="tanggal_sewa">
+                    
+                    <label>Ambil di pool</label>
+                    <select class="span5" name="ambil_di_pool">
+                    	<option value="">Pilih!</option>
+                    	<option value="1">Ya</option>
+                    	<option value="0">Tidak, antar ke alamat saya</option>
+                    </select>
+                    
+                    <div id="alamat" style="display:none;">
+                    <label>Alamat Pengiriman</label>
+                    <input type="text" class="span5" name="alamat">
+                    </div>
+                    
+                    <label>Durasi Sewa</label>
+                    <select class="span5" name="durasi_sewa" id="durasi_sewa">
+                    	<option value="">Pilih</option>
+                    	<option value="14">14 Jam</option>
+                    	<option value="28">28 Jam</option>
+                    	<option value="42">42 Jam</option>
+                    </select>
+                    
+                    <label>Tanggal Pengembalian</label>
+                    <input type="text" class="span5" name="tanggal_pengembalian" readonly/>
+                    
+                    <label>Kode Kupon</label>
+                    <input type="text" class="span5" name="kode_kupon" />
+                    
+                    <legend>Informasi Tarif</legend>
+                    <label>Harga Dasar per 14 Jam</label>
+                    300000
+                    <label>Tambahan luar kota per Jam</label>
+                    3500
+                    <label>Biaya overtime per jam</label>
+                    25000
+                    
+                    <legend>Informasi tarif order</legend>
+                    <label>Durasi sewa anda</label>
+                    <div id="durasi_sewa_order">28 Jam</div>
+						  <label>PPN</label>                    
+						  10%
+						  <label>PPH</label>                    
+                    2%
+                    <label>Diskon Kupon</label>
+                    13%
+                    <label>Tujuan</label>
+                    Luar Kota
+                    <label>Total yang harus dibayar</label>
+                    Rp 500000
+                    <input type="hidden" name="total_order" value="500000">
+                    <br />
+                    ** Harga diatas sudah termasuk sopir, dan layanan sewa kami wajib menggunakan sopir.
+                    
+                    
+
+                    <div class="gap gap-mini"></div>
+                    <input type="submit" class="btn btn-primary btn-block btn-large span6" value="Order">
+                </form>
+            </div>
+        </div>
+        <div class="gap"></div>
+    </div>
+
+
+    <!-- //////////////////////////////////
+//////////////END PAGE CONTENT///////// 
+////////////////////////////////////-->
+
+    <!-- //////////////////////////////////
+//////////////MAIN FOOTER////////////// 
+////////////////////////////////////-->
+
+    <footer class="main">
+        <div class="footer-top-area">
+            <div class="container">
+                <div class="row row-wrap">
+                    <div class="span3">
+                        <a href="index.html">
+                            <img src="img/logo.png" alt="logo" title="logo" class="logo">
+                        </a>
+                    </div>
+                    <div class="span3">
+                        <h5>Get it Anywhere</h5>
+                        <p>Ultrices varius semper laoreet molestie purus euismod fames odio volutpat eleifend turpis nec cras quam litora dignissim curae lacus platea sociis mauris hendrerit sed fringilla dignissim cum mi amet orci</p>
+                        <ul class="list list-app-download">
+                            <li>
+                                <a href="#" class="icon-windows box-icon" title="Get Windows Phone App" data-toggle="tooltip"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="icon-apple box-icon" title="Get iPhone App" data-toggle="tooltip"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="icon-android box-icon" title="Get Android App" data-toggle="tooltip"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="span3">
+                        <h5>Koupon on Twitter</h5>
+                        <!-- START TWITTER -->
+                        <div class="twitter-ticker" id="twitter-ticker"></div>
+                        <!-- END TWITTER -->
+                    </div>
+                    <div class="span3">
+                        <h5>Recent News</h5>
+                        <ul class="list post-list">
+                            <li class="post-thumb">
+                                <h5 class="title"><a href="#">Gravida porttitor vulputate</a></h5><small>05 August, 2013</small>
+                                <p class="post-desciption">Dignissim phasellus magnis mus duis nisl ut lacus vehicula velit</p>
+                            </li>
+                            <li class="post-thumb">
+                                <h5 class="title"><a href="#">A duis</a></h5><small>29 July, 2013</small>
+                                <p class="post-desciption">Class augue curae accumsan tempor semper id integer adipiscing mattis</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row row-wrap">
+                <div class="span3">
+                    <h5>About Koupon</h5>
+                    <p>Tellus auctor sem sociosqu cras cursus vitae erat aliquam adipiscing iaculis suscipit curabitur hac hac congue netus integer ridiculus volutpat varius suspendisse velit venenatis facilisi velit quis volutpat enim ipsum</p>
+                </div>
+                <div class="span2">
+                    <h5>Company</h5>
+                    <ul class="list">
+                        <li><a href="#">Home</a>
+                        </li>
+                        <li><a href="#">Blog</a>
+                        </li>
+                        <li><a href="#">Press</a>
+                        </li>
+                        <li><a href="#">Jobs</a>
+                        </li>
+                        <li><a href="#">Investors</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span2">
+                    <h5>For Business</h5>
+                    <ul class="list">
+                        <li><a href="#">Advertising</a>
+                        </li>
+                        <li><a href="#">Runnig a Deal</a>
+                        </li>
+                        <li><a href="#">Accept Payments</a>
+                        </li>
+                        <li><a href="#">Referral Program</a>
+                        </li>
+                        <li><a href="#">Developers/API</a>
+                        </li>
+                        <li><a href="#">Merchant Terms</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span2">
+                    <h5>Get Help</h5>
+                    <ul class="list">
+                        <li><a href="#">FAQ</a>
+                        </li>
+                        <li><a href="#">Customer Support</a>
+                        </li>
+                        <li><a href="#">Return Policy</a>
+                        </li>
+                        <li><a href="#">Terms Of Use</a>
+                        </li>
+                        <li><a href="#">Privacy Statement</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span3">
+                    <h5>Keep in touch</h5>
+                    <p>Mauris mus tortor leo augue non sociosqu ridiculus sagittis odio</p>
+                    <ul class="list list-social">
+                        <li>
+                            <a href="#" class="icon-facebook box-icon" data-toggle="tooltip" title="Facebook"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-twitter box-icon" data-toggle="tooltip" title="Twitter"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-flickr box-icon" data-toggle="tooltip" title="Flickr"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-linkedin box-icon" data-toggle="tooltip" title="Linkedin"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-tumblr box-icon" data-toggle="tooltip" title="Tumblr"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //////////////////////////////////
+//////////////END MAIN  FOOTER///////// 
+////////////////////////////////////-->
+
+    <!-- Scripts queries -->
+    <script src="js/jquery.js"></script>
+    <script src="js/boostrap.min.js"></script>
+    <script src="js/nivo_slider.min.js"></script>
+    <script src="js/countdown.min.js"></script>
+    <script src="js/flexnav.min.js"></script>
+    <script src="js/magnific.min.js"></script>
+    <script src="js/tweet.min.js"></script>
+    <!--
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="js/gmap3.min.js"></script>
+    -->
+    <script src="js/wilto_slider.min.js"></script>
+    <script src="js/mediaelement.min.js"></script>
+    <script src="js/fitvids.min.js"></script>
+    <script src="js/mail.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <!--
+    <script src="js/id.js"></script>
+    -->
+    <script src="js/bootstrap-datetimepicker.js"></script>
+    <script src="angular.min.js">
+    </script>
+
+    <!-- Custom scripts -->
+    <script src="js/custom.js"></script>
+    <script type="text/javascript">
+    	$(function () {
+    		$("#tanggal_sewa").datetimepicker({
+				format: 'dd-mm-yyyy hh:ii',
+				setStartDate : new Date()    		
+    		});
+    		
+    		$("select[name='ambil_di_pool']").on('change', function () {
+				if(this.value == "0"){
+					$("#alamat").show();				
+				}else {
+					$("#alamat").hide();
+				}    			
+    		});
+    		
+    		$("#durasi_sewa").on('change', function () {
+    			$("#durasi_sewa_order").html(this.value+" Jam");
+    			var tanggal_sewa = moment($("input[id='tanggal_sewa']").val(), "DD-MM-YYYY HH:mm");
+				//console.log(tanggal_sewa);    			
+    			tanggal_sewa.add(this.value, 'hours');
+    			$("input[name='tanggal_pengembalian']").val(tanggal_sewa.format('DD-MM-YYYY HH:mm'));
+    		});
+    	});
+    	
+      angular.module('rentalkika', [])
+    	.controller('OrderSewaController', function ($scope, $http, $location) {
+    	
+    		var config = { headers: {'X-Parse-Application-Id' : 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58'}};    		
+    		$http.get('http://128.199.249.233:1337/parse/classes/city', config).then(function (response) {
+    			$scope.cities = response.data.results;
+    			console.log(response.data.results);
+    		}, function (error) {
+    			console.log(error);
+    		});
+    		
+	    	var url = $location.url();
+	    	alert()
+    		alert(url.indexOf("="));
+    		console.log(url.length);
+    		
+    		/*
+			var config = {
+				params: { where: {
+						vehicle_license_plate: ''					
+					}
+				},			 	
+			 	headers: {'X-Parse-Application-Id' : 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58'}
+			};  
+			*/ 		
+    		
+    	});
+    </script>
+
+</body>
+
+</html>
+
+
+

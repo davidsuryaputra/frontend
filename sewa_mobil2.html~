@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<title></title>	
+	</head>
+	<body ng-app="rentalkika">
+		<div ng-controller="CobaController">
+		</div>
+	</body>
+	<script src="angular.min.js"></script>
+	<script type="text/javascript" >
+	angular.module('rentalkika', [])
+	.controller('CobaController', ['$http', '$scope', function ($scope, $http) {
+		alert('xy');
+	}])
+	</script>
+</html>

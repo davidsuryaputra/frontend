@@ -1,0 +1,447 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Koupon - Payment</title>
+    <!-- meta info -->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="keywords" content="Koupon HTML5 Template" />
+    <meta name="description" content="Koupon - Premiun HTML5 Template for Coupons Website">
+    <meta name="author" content="Dark Cyber" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google fonts -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
+    <!--
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    -->
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/boostrap.css">
+    <link rel="stylesheet" href="css/boostrap_responsive.css">
+    <!-- Font Awesome styles (icons) -->
+    <link rel="stylesheet" href="css/font_awesome.css">
+    <!-- Main Template styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- IE 8 Fallback -->
+    <!--[if lt IE 9]>
+	<link rel="stylesheet" type="text/css" href="css/ie.css" />
+<![endif]-->
+
+    <!-- Your custom styles (blank file) -->
+    <link rel="stylesheet" href="css/mystyles.css">
+</head>
+
+<body ng-app='rentalkika'>
+
+
+
+
+
+    <!-- //////////////////////////////////
+//////////////MAIN HEADER///////////// 
+////////////////////////////////////-->
+    <header class="main">
+        <div class="container">
+            <div class="row">
+                <div class="span2">
+                    <a href="index.html">
+                        <img src="img/logo-small.png" alt="logo" title="logo" class="logo">
+                    </a>
+                </div>
+                <div class="span8">
+                    <!-- MAIN NAVIGATION -->
+                    <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
+                    <nav>
+                        <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
+                            <li><a href="index.html">Home</a>
+                                <ul>
+                                    <li><a href="index.html">Slider</a>
+                                        <ul>
+                                            <li><a href="index.html">Full Width</a>
+                                            </li>
+                                            <li><a href="index-slider-container.html">Container</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="index-hero-image.html">Hero Image</a>
+                                    </li>
+                                    <li><a href="index-no-top.html">No Top Area</a>
+                                    </li>
+                                    <li><a href="index-category-right.html">Category Nav</a>
+                                        <ul>
+                                            <li><a href="index-category-right.html">Side Right</a>
+                                            </li>
+                                            <li><a href="index-category-nav-inline-top.html">Inline Top</a>
+                                            </li>
+                                            <li><a href="index-category-nav-main.html">Main Nav</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="index-featured-item.html">Featured Item</a>
+                                    </li>
+                                    <li><a href="index-coupon-4-columns.html">Coupons</a>
+                                        <ul>
+                                            <li><a href="index-coupon-4-columns.html">4 Columns</a>
+                                            </li>
+                                            <li><a href="index-coupon-6-columns.html">6 columns</a>
+                                            </li>
+                                            <li><a href="index-coupon-category-icon.html">Category icons</a>
+                                            </li>
+                                            <li><a href="index-coupon-labels.html">Labels</a>
+                                            </li>
+                                            <li><a href="index-coupon-holded.html">Holded</a>
+                                            </li>
+                                            <li><a href="index-coupon-load-more.html">Load More Btn</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="coupon-page.html">Coupon page</a>
+                                <ul>
+                                    <li><a href="coupon-page-meta-left.html">Meta Left</a>
+                                    </li>
+                                    <li><a href="coupon-page.html">Meta Right</a>
+                                    </li>
+                                    <li><a href="coupon-page-similar.html">Similar Offers</a>
+                                    </li>
+                                    <li><a href="coupon-page-image.html">Image Preview</a>
+                                    </li>
+                                    <li><a href="coupon-page-video-hosted.html">Video</a>
+                                        <ul>
+                                            <li><a href="coupon-page-video-hosted.html">Self Hosted</a>
+                                            </li>
+                                            <li><a href="coupon-page-video-vimeo.html">Vimeo</a>
+                                            </li>
+                                            <li><a href="coupon-page-video-youtube.html">Youtube</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="coupon-page-gallery-3-col.html">Gallery</a>
+                                        <ul>
+                                            <li><a href="coupon-page-gallery-3-col.html">3 columns</a>
+                                            </li>
+                                            <li><a href="coupon-page-gallery-4-col.html">4 Columns</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="features-typography.html">Features</a>
+                                <ul>
+                                    <li><a href="features-typography.html">Typography</a>
+                                    </li>
+                                    <li><a href="features-elements.html">Elements</a>
+                                    </li>
+                                    <li><a href="features-grid.html">Grid</a>
+                                    </li>
+                                    <li><a href="features-icons.html">Icons</a>
+                                    </li>
+                                    <li><a href="features-image-hover.html">Image Hovers</a>
+                                    </li>
+                                    <li><a href="features-sliders.html">Sliders</a>
+                                    </li>
+                                    <li><a href="features-media.html">Media</a>
+                                    </li>
+                                    <li><a href="features-lightbox.html">Lightbox</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="active"><a href="page-full-width.html">Pages</a>
+                                <ul>
+                                    <li><a href="page-full-width.html">Full Width</a>
+                                    </li>
+                                    <li><a href="page-sidebar-right.html">Sidebar Right</a>
+                                    </li>
+                                    <li><a href="page-sidebar-left.html">Sidebar Left</a>
+                                    </li>
+                                    <li><a href="page-faq.html">FAQ</a>
+                                    </li>
+                                    <li><a href="page-about-us.html">About Us</a>
+                                    </li>
+                                    <li><a href="page-team.html">Team</a>
+                                    </li>
+                                    <li class="active"><a href="page-payment.html">Payment</a>
+                                    </li>
+                                    <li><a href="page-sticky-header.html">Sticky Header</a>
+                                    </li>
+                                    <li><a href="page-sticky-search.html">Sticky Search</a>
+                                    </li>
+                                    <li><a href="page-sticky-header-search.html">Sticky Header & Seach</a>
+                                    </li>
+                                    <li><a href="page-no-search.html">No search</a>
+                                    </li>
+                                    <li><a href="page-404.html">404</a>
+                                    </li>
+                                    <li><a href="page-search-results.html">Search Results</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="blog-sidebar-right.html">Blog</a>
+                                <ul>
+                                    <li><a href="blog-sidebar-right.html">Sidebar Right</a>
+                                    </li>
+                                    <li><a href="blog-sidebar-left.html">Sidebar Left</a>
+                                    </li>
+                                    <li><a href="blog-full-width.html">Full Width</a>
+                                    </li>
+                                    <li><a href="post-sidebar-right.html">Post</a>
+                                        <ul>
+                                            <li><a href="post-sidebar-right.html">Sidebar Right</a>
+                                            </li>
+                                            <li><a href="post-sidebar-left.html">Sidebar Left</a>
+                                            </li>
+                                            <li><a href="post-full-width.html">Full Width</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- END MAIN NAVIGATION -->
+                </div>
+                <div class="span2">
+                    <!-- LOGIN REGISTER LINKS -->
+                    <ul class="login-register">
+                        <li><a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top"><i class="icon-signin"></i>Sign in</a>
+                        </li>
+                        <li><a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"><i class="icon-edit"></i>Sign up</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- LOGIN REGISTER LINKS CONTENT -->
+
+    <!-- END LOGIN REGISTER LINKS CONTENT -->
+
+
+    <!-- PAGE TITLE -->
+    <div class="top-title-area">
+        <div class="container">
+            <h1 class="title-page">Register Member</h1>
+        </div>
+    </div>
+    <!-- END PAGE TITLE -->
+
+    <div class="gap"></div>
+
+    <!-- //////////////////////////////////
+//////////////END MAIN HEADER////////// 
+////////////////////////////////////-->
+
+
+    <!-- //////////////////////////////////
+//////////////PAGE CONTENT///////////// 
+////////////////////////////////////-->
+
+
+    <div class="container" ng-controller="RegisterController as Register">
+        <div class="row">
+            <div class="span5">
+                <form class="dialog-form" >
+                <label>E-mail</label>
+                <input type="text" placeholder="email@domain.com">
+                <label>Password</label>
+                <input type="password" placeholder="My secret password">
+                <label>Repeat Password</label>
+                <input type="password" placeholder="Type your password again">
+  					 <label>Nama Lengkap</label>
+  					 <input type="text" name="full_name">
+  					 <label>Alamat</label>
+  					 <input type="text" name="address">
+  					 <label>Telepon<label>
+  					 <input type="text" name="phone">
+  					 <label>Nama Saudara (tidak serumah)</label>
+  					 <input type="text" name="family_name">
+  					 <label>Alamat saudara (tidak serumah)</label>
+  					 <input type="text" name="family_address">
+  					 <label>Telepon saudara (tidak serumah)</label>
+					 <input type="text" name="family_phone">
+					 <label>Upload identitas (KTP/SIM)</label>
+					 <input type="file" name="ktp">  					 
+  					 
+                <label class="checkbox">
+                    <input type="checkbox">Get hot offers via e-mail
+                </label>
+                <input type="submit" value="Sign up" class="btn btn-primary">
+            	</form>
+            </div>
+        </div>
+        <div class="gap"></div>
+    </div>
+
+
+    <!-- //////////////////////////////////
+//////////////END PAGE CONTENT///////// 
+////////////////////////////////////-->
+
+
+
+    <!-- //////////////////////////////////
+//////////////MAIN FOOTER////////////// 
+////////////////////////////////////-->
+
+    <footer class="main">
+        <div class="footer-top-area">
+            <div class="container">
+                <div class="row row-wrap">
+                    <div class="span3">
+                        <a href="index.html">
+                            <img src="img/logo.png" alt="logo" title="logo" class="logo">
+                        </a>
+                    </div>
+                    <div class="span3">
+                        <h5>Get it Anywhere</h5>
+                        <p>Rutrum etiam iaculis nec non placerat nisi sed at suscipit at duis quam massa consectetur euismod quam suspendisse netus vivamus penatibus nunc sociosqu quisque neque amet porttitor nisl commodo sem</p>
+                        <ul class="list list-app-download">
+                            <li>
+                                <a href="#" class="icon-windows box-icon" title="Get Windows Phone App" data-toggle="tooltip"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="icon-apple box-icon" title="Get iPhone App" data-toggle="tooltip"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="icon-android box-icon" title="Get Android App" data-toggle="tooltip"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="span3">
+                        <h5>Koupon on Twitter</h5>
+                        <!-- START TWITTER -->
+                        <div class="twitter-ticker" id="twitter-ticker"></div>
+                        <!-- END TWITTER -->
+                    </div>
+                    <div class="span3">
+                        <h5>Recent News</h5>
+                        <ul class="list post-list">
+                            <li class="post-thumb">
+                                <h5 class="title"><a href="#">Quis volutpat enim</a></h5><small>09 August, 2013</small>
+                                <p class="post-desciption">Ipsum mauris mus tortor leo augue non sociosqu ridiculus sagittis</p>
+                            </li>
+                            <li class="post-thumb">
+                                <h5 class="title"><a href="#">Odio curabitur</a></h5><small>30 July, 2013</small>
+                                <p class="post-desciption">Nostra maecenas nisi lectus platea mauris venenatis sed dui primis</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row row-wrap">
+                <div class="span3">
+                    <h5>About Koupon</h5>
+                    <p>Metus vivamus faucibus curabitur cum sollicitudin sed sapien ultrices placerat placerat vehicula phasellus litora mollis fringilla ridiculus odio litora dapibus amet dignissim ante diam sociosqu neque imperdiet natoque a rutrum</p>
+                </div>
+                <div class="span2">
+                    <h5>Company</h5>
+                    <ul class="list">
+                        <li><a href="#">Home</a>
+                        </li>
+                        <li><a href="#">Blog</a>
+                        </li>
+                        <li><a href="#">Press</a>
+                        </li>
+                        <li><a href="#">Jobs</a>
+                        </li>
+                        <li><a href="#">Investors</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span2">
+                    <h5>For Business</h5>
+                    <ul class="list">
+                        <li><a href="#">Advertising</a>
+                        </li>
+                        <li><a href="#">Runnig a Deal</a>
+                        </li>
+                        <li><a href="#">Accept Payments</a>
+                        </li>
+                        <li><a href="#">Referral Program</a>
+                        </li>
+                        <li><a href="#">Developers/API</a>
+                        </li>
+                        <li><a href="#">Merchant Terms</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span2">
+                    <h5>Get Help</h5>
+                    <ul class="list">
+                        <li><a href="#">FAQ</a>
+                        </li>
+                        <li><a href="#">Customer Support</a>
+                        </li>
+                        <li><a href="#">Return Policy</a>
+                        </li>
+                        <li><a href="#">Terms Of Use</a>
+                        </li>
+                        <li><a href="#">Privacy Statement</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="span3">
+                    <h5>Keep in touch</h5>
+                    <p>Augue augue tellus est dui tristique euismod vulputate id risus</p>
+                    <ul class="list list-social">
+                        <li>
+                            <a href="#" class="icon-facebook box-icon" data-toggle="tooltip" title="Facebook"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-twitter box-icon" data-toggle="tooltip" title="Twitter"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-flickr box-icon" data-toggle="tooltip" title="Flickr"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-linkedin box-icon" data-toggle="tooltip" title="Linkedin"></a>
+                        </li>
+                        <li>
+                            <a href="#" class="icon-tumblr box-icon" data-toggle="tooltip" title="Tumblr"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //////////////////////////////////
+//////////////END MAIN  FOOTER///////// 
+////////////////////////////////////-->
+
+    <!-- Scripts queries -->
+    <script src="js/jquery.js"></script>
+    <script src="js/boostrap.min.js"></script>
+    <script src="js/nivo_slider.min.js"></script>
+    <script src="js/countdown.min.js"></script>
+    <script src="js/flexnav.min.js"></script>
+    <script src="js/magnific.min.js"></script>
+    <script src="js/tweet.min.js"></script>
+    <!--
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="js/gmap3.min.js"></script>
+    -->
+    <script src="js/wilto_slider.min.js"></script>
+    <script src="js/mediaelement.min.js"></script>
+    <script src="js/fitvids.min.js"></script>
+    <script src="js/mail.min.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="js/custom.js"></script>
+    <script src="angular.min.js"></script>
+    <script type="text/javascript">
+		    
+    </script>
+
+</body>
+
+</html>
+
+
+
+
