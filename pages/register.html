@@ -1,0 +1,64 @@
+    <!-- PAGE TITLE -->
+    <div class="top-title-area">
+        <div class="container">
+            <h1 class="title-page">Register Member</h1>
+        </div>
+    </div>
+    <!-- END PAGE TITLE -->
+
+    <div class="gap"></div>
+
+    <!-- //////////////////////////////////
+//////////////END MAIN HEADER////////// 
+////////////////////////////////////-->
+
+
+    <!-- //////////////////////////////////
+//////////////PAGE CONTENT///////////// 
+////////////////////////////////////-->
+
+
+    <div class="container" ng-controller="RegisterController">
+        <div class="row">
+            <div class="span5">
+                <form class="dialog-form" ng-submit="handleRegister()">
+                <label>Username</label>
+                <input type="text" placeholder="yourUsernameLogin" ng-model="customer.username" required>
+                <label>E-mail</label>
+                <input type="text" placeholder="email@domain.com" ng-model="customer.email" required>
+                <label>Password</label>
+                <input type="password" placeholder="My secret password" ng-model="customer.password" required>
+                <label>Repeat Password</label>
+                <input type="password" placeholder="Type your password again" ng-model="customer.passwordConfirmation" required password-confirm match-target="customer.password">
+					 <span class="help-block" ng-show="myForm.passwordConfirmation.$error.match">Passwords do not match.</span>  					 
+  					 <label>Nama Lengkap</label>
+  					 <input type="text" name="full_name" ng-model="customer.full_name" required>
+  					 <label>Alamat</label>
+  					 <input type="text" name="address" ng-model="customer.address" required>
+  					 <label>Telepon<label>
+  					 <input type="text" name="phone" ng-model="customer.phone" required>
+  					 <label>Nama Saudara (tidak serumah)</label>
+  					 <input type="text" name="family_name" ng-model="customer.family_name" required>
+  					 <label>Alamat saudara (tidak serumah)</label>
+  					 <input type="text" name="family_address" ng-model="customer.family_address" required>
+  					 <label>Telepon saudara (tidak serumah)</label>
+					 <input type="text" name="family_phone" ng-model="customer.family_phone" required>
+					 <br />
+					 <!--
+					 <label>Upload identitas (KTP/SIM)</label>
+					 <input type="file" name="ktp" file-model="myFile">
+					 -->  					 
+  					 <!--
+                <label class="checkbox">
+                    <input type="checkbox">Get hot offers via e-mail
+                </label>
+                -->
+                <input type="submit" value="Sign up" class="btn btn-primary">
+                <!--
+                <input type="button" value="Upload aja" ng-click="upload()" class="btn btn-primary">
+                -->
+            	</form>
+            </div>
+        </div>
+        <div class="gap"></div>
+    </div>

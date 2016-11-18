@@ -1,0 +1,63 @@
+    <!-- PAGE TITLE -->
+    <div class="top-title-area">
+        <div class="container">
+            <h1 class="title-page">Register Partner</h1>
+        </div>
+    </div>
+    <!-- END PAGE TITLE -->
+
+    <div class="gap"></div>
+
+    <!-- //////////////////////////////////
+//////////////END MAIN HEADER////////// 
+////////////////////////////////////-->
+
+
+    <!-- //////////////////////////////////
+//////////////PAGE CONTENT///////////// 
+////////////////////////////////////-->
+
+
+    <div class="container" ng-controller="RegisterPartnerController">
+        <div class="row">
+            <div class="span5">
+                <form class="dialog-form" ng-submit="handleRegister()">
+                <label>Username</label>
+                <input type="text" placeholder="yourUsernameLogin" ng-model="partner.username" required>
+                <label>E-mail</label>
+                <input type="text" placeholder="email@domain.com" ng-model="partner.email" required>
+                <label>Password</label>
+                <input type="password" placeholder="My secret password" ng-model="partner.password" required>
+                <label>Repeat Password</label>
+                <input type="password" placeholder="Type your password again" ng-model="partner.passwordConfirmation" required password-confirm match-target="customer.password">
+					 <span class="help-block" ng-show="myForm.passwordConfirmation.$error.match">Passwords do not match.</span>  					 
+  					 <label>Nama Rental</label>
+  					 <input type="text" name="full_name" placeholder="Rental ABC" ng-model="partner.full_name" required>
+  					 <label>Alamat Rental</label>
+  					 <input type="text" name="address" ng-model="partner.address" required>
+  					 <label>Telepon Rental<label>
+  					 <input type="text" name="phone" ng-model="partner.phone" required>
+  					 <label>Pemilik Rental</label>
+  					 <input type="text" name="family_name" placeholder="Joko Budiono" ng-model="partner.owner_name" required>
+  					 <label>Alamat Pemilik</label>
+  					 <input type="text" name="family_address" ng-model="partner.owner_address" required>
+  					 <label>Telepon Pemilik</label>
+					 <input type="text" name="family_phone" ng-model="partner.owner_phone" required>
+					 <!--
+					 <label>Upload identitas (KTP/SIM)</label>
+					 <input type="file" name="ktp" file-model="myFile">
+					 -->  					 
+  					 <!--
+                <label class="checkbox">
+                    <input type="checkbox">Get hot offers via e-mail
+                </label>
+                -->
+                <input type="submit" value="Sign up" class="btn btn-primary">
+                <!--
+                <input type="button" value="Upload aja" ng-click="upload()" class="btn btn-primary">
+                -->
+            	</form>
+            </div>
+        </div>
+        <div class="gap"></div>
+    </div>

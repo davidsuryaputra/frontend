@@ -1,0 +1,72 @@
+	var config = {
+		params: {
+			where: {
+				pool_id: {
+					$inQuery: {
+						where: {
+							city_id: {
+								$inQuery: {
+									where: {
+										city_name: "Jakarta"
+									},
+									className: "city"								
+								}
+							
+							}
+							//pool_address: "JL. DEF"						
+						},
+						className: "pool"					
+					}		
+				}
+			},
+			include: 'pool_id.city_id,car_id.car_class_id',
+			
+		},
+		headers: { 'X-Parse-Application-Id' : 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58' }	
+	};
+	
+	///////////////////////////////////////////////////////
+	
+	var config = {
+		params: {
+			where: {
+				vehicle_year: "2013",
+				pool_id: {
+					$inQuery: {
+						where: {
+							city_id: {
+								$inQuery: {
+									where: {
+										city_name: "Jakarta"
+									},
+									className: "city"								
+								}
+							
+							}
+							//pool_address: "JL. DEF"						
+						},
+						className: "pool"					
+					}		
+				},
+				car_id: {
+					$inQuery: {
+						where: {
+							car_class_id: {
+								$inQuery: {
+									where: {
+										name: "Box"									
+									},
+									className: "car_class"								
+								}
+							}						
+						},
+						className: "car"					
+					}				
+				}
+				
+			},
+			include: 'pool_id.city_id,car_id.car_class_id',
+			
+		},
+		headers: { 'X-Parse-Application-Id' : 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58' }	
+	};
