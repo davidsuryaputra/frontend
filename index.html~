@@ -36,8 +36,6 @@
 
 <body ng-app="rentalkika">
 
-    
-
 
 <!-- //// START PAGE CONTENT -->
 
@@ -53,7 +51,9 @@
     <script src="js/boostrap.min.js"></script>
     <script src="js/nivo_slider.min.js"></script>
     <script src="js/countdown.min.js"></script>
-    <script src="js/flexnav.min.js"></script>
+
+    
+
     <script src="js/magnific.min.js"></script>
     <script src="js/tweet.min.js"></script>
 	    
@@ -71,10 +71,20 @@
 	 <script src="js/ng-file-upload-shim.js"></script>
 	 <script src="js/ng-file-upload.js"></script>
 	 <script src="js/app.js"></script>
+	 <script src="js/flexnav.min.js"></script>
 
 	 
     <!-- Custom scripts -->
     <script src="js/custom.js"></script>
+    <script type="text/javascript" >
+    if($('#something').length){
+		alert('something found'); 
+		//init plugin nav with #something here
+		//#something @header.html   
+    }else{
+		alert('something not found');    
+    }
+    </script>
     
     <!-- Backend JS -->
     

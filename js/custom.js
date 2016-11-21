@@ -43,6 +43,7 @@ $(window).load(function() {
 
 
 $(function(){
+
 	$('#flexnav').flexNav();
 });
 

@@ -43,6 +43,11 @@ $(window).load(function() {
 
 
 $(function(){
+	if($('#jancok').length){
+		alert('jancok exists');
+	}else {
+		alert('notfound');	
+	}
 	$('#flexnav').flexNav();
 });
 
@@ -145,6 +150,8 @@ var ul = $('#twitter-ticker').find(".tweet-list");
   };
   ticker();
 });
+
+/*
 $(function(){
   $('#gmap').gmap3({
     marker:{
@@ -157,6 +164,8 @@ $(function(){
     }
   });
 });
+*/
+
  $(function() {
       $('#wilto-slider-wrap').wiltoSlider();
     });

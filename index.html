@@ -36,120 +36,6 @@
 
 <body ng-app="rentalkika">
 
-      <!-- //////////////////////////////////
-//////////////MAIN HEADER///////////// 
-////////////////////////////////////-->
-    <header class="main">
-        <div class="container">
-            <div class="row">
-                <div class="span2">
-                    <a href="index.html">
-                        <img src="img/logo-small.png" alt="logo" title="logo" class="logo">
-                    </a>
-                </div>
-                <div class="span8">
-                    <!-- MAIN NAVIGATION -->
-                    <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
-                    <nav>
-                        <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
-                            <li class="active"><a href="index.html">Home</a>
-                            </li>
-                            <li><a href="#">Layanan</a>
-                                <ul>
-                                    <li><a href="#sewa_mobil">Sewa Mobil</a>
-                                    </li>
-                                    <li><a href="#">Shuttle</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="features-typography.html">Paket Wisata
-										<ul>
-											<li><a href="#">xxx</a></li>										
-											<li><a href="#">bbb</a></li>										
-										</ul>                            
-                            </a>
-                            </li>
-                            <li><a href="blog-sidebar-right.html">Blog</a>
-                            </li>
-   								 <li><a href="#">FAQ</a>
-                            </li>
-                            <li><a href="#register_partner">Tertarik menjadi mitra kami?</a></li>
-                            <li><a href="#contact">Contact</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- END MAIN NAVIGATION -->
-                </div>
-                <div class="span2">
-                    <!-- LOGIN REGISTER LINKS -->
-                    <ul class="login-register" ng-controller="LoginController">
-                    
-                        <li ng-hide="loggedIn"><a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top"><i class="icon-signin"></i>Sign in</a>
-                        </li>
-                        <li ng-show="loggedIn"><a href="#" ng-click="logout()"><i class="icon-signout"></i>Sign out</a>
-                        </li>
-                        
-                        <li><a href="#register"><i class="icon-edit"></i>Sign up</a>
-                        </li>
-                        
-                           <!-- LOGIN REGISTER LINKS CONTENT -->
-    <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
-        <i class="icon-signin dialog-icon"></i>
-        <h3>Member Login</h3>
-        <h5>Welcome back, friend. Login to get started</h5>
-        <div class="row-fluid">
-            <form class="dialog-form" ng-submit="handleLogin()" >
-                <label>Username</label>
-                <input type="text" placeholder="yourUsername" ng-model="login.username" class="span12">
-                <label>Password</label>
-                <input type="password" placeholder="My secret password" ng-model="login.password" class="span12">
-                <label class="checkbox">
-                    <input type="checkbox">Remember me
-                </label>
-                <div class="control-group error" ng-show="error">
-                <span class="error help-block">
-                	{{ error }}
-                </span>
-                </div>
-                <input type="submit" value="Sign in" class="btn btn-primary">
-                <button ng-click="FBLogin()" class="btn btn-primary">Login with Facebook</button>
-            </form>
-        </div>
-        <!--
-        <ul class="dialog-alt-links">
-            <li><a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">Not member yet</a>
-            </li>
-            <li><a class="popup-text" href="#password-recover-dialog" data-effect="mfp-zoom-out">Forgot password</a>
-            </li>
-        </ul>
-        -->
-    </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
-
- 
-
-    <div id="password-recover-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
-        <i class="icon-retweet dialog-icon"></i>
-        <h3>Password Recovery</h3>
-        <h5>Fortgot your password? Don't worry we can deal with it</h5>
-        <div class="row-fluid">
-            <form class="dialog-form">
-                <label>E-mail</label>
-                <input type="text" placeholder="email@domain.com" class="span12">
-                <input type="submit" value="Request new password" class="btn btn-primary">
-            </form>
-        </div>
-    </div>
-    <!-- END LOGIN REGISTER LINKS CONTENT -->
-    
-    <!-- //////////////////////////////////
-//////////////END MAIN HEADER////////// 
-////////////////////////////////////-->  
-
 
 <!-- //// START PAGE CONTENT -->
 
@@ -165,7 +51,9 @@
     <script src="js/boostrap.min.js"></script>
     <script src="js/nivo_slider.min.js"></script>
     <script src="js/countdown.min.js"></script>
-    <script src="js/flexnav.min.js"></script>
+
+    
+
     <script src="js/magnific.min.js"></script>
     <script src="js/tweet.min.js"></script>
 	    
@@ -183,10 +71,20 @@
 	 <script src="js/ng-file-upload-shim.js"></script>
 	 <script src="js/ng-file-upload.js"></script>
 	 <script src="js/app.js"></script>
+	 <script src="js/flexnav.min.js"></script>
 
 	 
     <!-- Custom scripts -->
     <script src="js/custom.js"></script>
+    <script type="text/javascript" >
+    if($('#something').length){
+		alert('something found'); 
+		//init plugin nav with #something here
+		//#something @/pages/header.html   
+    }else{
+		alert('something not found');    
+    }
+    </script>
     
     <!-- Backend JS -->
     
