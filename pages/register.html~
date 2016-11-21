@@ -21,7 +21,8 @@
     <div class="container" ng-controller="RegisterController">
         <div class="row">
             <div class="span5">
-                <form class="dialog-form" ng-submit="handleRegister()">
+            	<div ng-show="fbLoggedIn">
+                <form class="dialog-form" ng-submit="handleRegister(picFile)">
                 <label>Username</label>
                 <input type="text" placeholder="yourUsernameLogin" ng-model="customer.username" required>
                 <label>E-mail</label>
@@ -43,10 +44,11 @@
   					 <input type="text" name="family_address" ng-model="customer.family_address" required>
   					 <label>Telepon saudara (tidak serumah)</label>
 					 <input type="text" name="family_phone" ng-model="customer.family_phone" required>
-					 <!--
+					 
 					 <label>Upload identitas (KTP/SIM)</label>
-					 <input type="file" name="ktp" file-model="myFile">
-					 -->  					 
+					 <input type="file" name="ktp" ngf-select ng-model="picFile" accept="image/*" ngf-max-size="5MB">
+					 <br />
+					  					 
   					 <!--
                 <label class="checkbox">
                     <input type="checkbox">Get hot offers via e-mail
@@ -54,9 +56,11 @@
                 -->
                 <input type="submit" value="Sign up" class="btn btn-primary">
                 <!--
-                <input type="button" value="Upload aja" ng-click="upload()" class="btn btn-primary">
+                <input type="button" value="Upload aja" ng-click="uploadFile()" class="btn btn-primary">
                 -->
+                
             	</form>
+            	</div>
             </div>
         </div>
         <div class="gap"></div>

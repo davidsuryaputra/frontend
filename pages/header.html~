@@ -1,42 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-
-<head>
-    <title>Koupon - Index</title>
-    <!-- meta info -->
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <meta name="keywords" content="Koupon HTML5 Template" />
-    <meta name="description" content="Koupon - Premiun HTML5 Template for Coupons Website">
-    <meta name="author" content="Dark Cyber" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google fonts -->
-    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'> -->
-    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
-    <!-- Bootstrap styles -->
-    <link rel="stylesheet" href="css/boostrap.css">
-    <link rel="stylesheet" href="css/boostrap_responsive.css">
-    <!-- Font Awesome styles (icons) -->
-    <link rel="stylesheet" href="css/font_awesome.css">
-    <!-- Main Template styles -->
-    <link rel="stylesheet" href="css/styles.css">
-
-    <!-- IE 8 Fallback -->
-    <!--[if lt IE 9]>
-	<link rel="stylesheet" type="text/css" href="css/ie.css" />
-<![endif]-->
-
-    <!-- Your custom styles (blank file) -->
-    <link rel="stylesheet" href="css/mystyles.css">
-    
-    <!-- Backend Style -->
-    
-    <!-- End Backend Style -->
-    
-</head>
-
-<body ng-app="rentalkika">
-
-      <!-- //////////////////////////////////
+    <!-- //////////////////////////////////
 //////////////MAIN HEADER///////////// 
 ////////////////////////////////////-->
     <header class="main">
@@ -54,7 +16,7 @@
                         <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
                             <li class="active"><a href="index.html">Home</a>
                             </li>
-                            <li><a href="#">Layanan</a>
+                            <li><a href="/layanan">Layanan</a>
                                 <ul>
                                     <li><a href="#sewa_mobil">Sewa Mobil</a>
                                     </li>
@@ -148,53 +110,4 @@
     
     <!-- //////////////////////////////////
 //////////////END MAIN HEADER////////// 
-////////////////////////////////////-->  
-
-
-<!-- //// START PAGE CONTENT -->
-
-	<div ng-view>
-    
-   </div>
-
-<!-- END PAGE CONTENT /// -->
-
-
-    <!-- Scripts queries -->
-    <script src="js/jquery.js"></script>
-    <script src="js/boostrap.min.js"></script>
-    <script src="js/nivo_slider.min.js"></script>
-    <script src="js/countdown.min.js"></script>
-    <script src="js/flexnav.min.js"></script>
-    <script src="js/magnific.min.js"></script>
-    <script src="js/tweet.min.js"></script>
-	    
-	 <!--   
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    
-    <script src="js/gmap3.min.js"></script>
-    -->
-    <script src="js/wilto_slider.min.js"></script>
-    <script src="js/mediaelement.min.js"></script>
-    <script src="js/fitvids.min.js"></script>
-    <script src="js/mail.min.js"></script>
-	 <script src="js/angular.min.js"></script>
-	 <script src="js/angular-route.js"></script>
-	 <script src="js/ng-file-upload-shim.js"></script>
-	 <script src="js/ng-file-upload.js"></script>
-	 <script src="js/app.js"></script>
-
-	 
-    <!-- Custom scripts -->
-    <script src="js/custom.js"></script>
-    
-    <!-- Backend JS -->
-    
-    <!-- End Backend JS -->
-
-</body>
-
-</html>
-
-
-
+////////////////////////////////////-->

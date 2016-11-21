@@ -27,122 +27,16 @@
 
     <!-- Your custom styles (blank file) -->
     <link rel="stylesheet" href="css/mystyles.css">
+    
+    <!-- Backend Style -->
+    
+    <!-- End Backend Style -->
+    
 </head>
 
 <body ng-app="rentalkika">
 
-
-
-
-
-    <!-- //////////////////////////////////
-//////////////MAIN HEADER///////////// 
-////////////////////////////////////-->
-    <header class="main">
-        <div class="container">
-            <div class="row">
-                <div class="span2">
-                    <a href="index.html">
-                        <img src="img/logo-small.png" alt="logo" title="logo" class="logo">
-                    </a>
-                </div>
-                <div class="span8">
-                    <!-- MAIN NAVIGATION -->
-                    <div class="flexnav-menu-button" id="flexnav-menu-button">Menu</div>
-                    <nav>
-                        <ul class="nav nav-pills flexnav" id="flexnav" data-breakpoint="800">
-                            <li class="active"><a href="index.html">Home</a>
-                            </li>
-                            <li><a href="#">Layanan</a>
-                                <ul>
-                                    <li><a href="#sewa_mobil">Sewa Mobil</a>
-                                    </li>
-                                    <li><a href="#">Shuttle</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="features-typography.html">Paket Wisata</a>
-                            </li>
-                            <li><a href="blog-sidebar-right.html">Blog</a>
-                            </li>
-   								 <li><a href="#">FAQ</a>
-                            </li>
-                            <li><a href="#">Tertarik menjadi mitra kami?</a></li>
-                            <li><a href="#contact">Contact</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- END MAIN NAVIGATION -->
-                </div>
-                <div class="span2">
-                    <!-- LOGIN REGISTER LINKS -->
-                    <ul class="login-register" ng-controller="LoginController">
-                    
-                        <li ng-show="hasNotsignedIn"><a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top"><i class="icon-signin"></i>Sign in</a>
-                        </li>
-                        <li ng-show="!hasNotsignedIn"><a href="#" ng-click="logout()"><i class="icon-signout"></i>Sign out</a>
-                        </li>
-                        
-                        <li><a href="#register"><i class="icon-edit"></i>Sign up</a>
-                        </li>
-                        
-                           <!-- LOGIN REGISTER LINKS CONTENT -->
-    <div id="login-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
-        <i class="icon-signin dialog-icon"></i>
-        <h3>Member Login</h3>
-        <h5>Welcome back, friend. Login to get started</h5>
-        <div class="row-fluid">
-            <form class="dialog-form" ng-submit="handleLogin()" >
-                <label>Username</label>
-                <input type="text" placeholder="yourUsername" ng-model="login.username" class="span12">
-                <label>Password</label>
-                <input type="password" placeholder="My secret password" ng-model="login.password" class="span12">
-                <label class="checkbox">
-                    <input type="checkbox">Remember me
-                </label>
-                <div class="control-group error" ng-show="error">
-                <span class="error help-block">
-                	{{ error }}
-                </span>
-                </div>
-                <input type="submit" value="Sign in" class="btn btn-primary">
-                <button ng-click="FBLogin()" class="btn btn-primary">Login with Facebook</button>
-            </form>
-        </div>
-        <!--
-        <ul class="dialog-alt-links">
-            <li><a class="popup-text" href="#register-dialog" data-effect="mfp-zoom-out">Not member yet</a>
-            </li>
-            <li><a class="popup-text" href="#password-recover-dialog" data-effect="mfp-zoom-out">Forgot password</a>
-            </li>
-        </ul>
-        -->
-    </div>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
-
- 
-
-    <div id="password-recover-dialog" class="mfp-with-anim mfp-hide mfp-dialog clearfix">
-        <i class="icon-retweet dialog-icon"></i>
-        <h3>Password Recovery</h3>
-        <h5>Fortgot your password? Don't worry we can deal with it</h5>
-        <div class="row-fluid">
-            <form class="dialog-form">
-                <label>E-mail</label>
-                <input type="text" placeholder="email@domain.com" class="span12">
-                <input type="submit" value="Request new password" class="btn btn-primary">
-            </form>
-        </div>
-    </div>
-    <!-- END LOGIN REGISTER LINKS CONTENT -->
     
-    <!-- //////////////////////////////////
-//////////////END MAIN HEADER////////// 
-////////////////////////////////////-->
 
 
 <!-- //// START PAGE CONTENT -->
@@ -153,138 +47,6 @@
 
 <!-- END PAGE CONTENT /// -->
 
-
-
-    <!-- //////////////////////////////////
-//////////////MAIN FOOTER////////////// 
-////////////////////////////////////-->
-
-    <footer class="main">
-        <div class="footer-top-area">
-            <div class="container">
-                <div class="row row-wrap">
-                    <div class="span3">
-                        <a href="index.html">
-                            <img src="img/logo.png" alt="logo" title="logo" class="logo">
-                        </a>
-                    </div>
-                    <div class="span3">
-                        <h5>Get it Anywhere</h5>
-                        <p>Ultrices varius semper laoreet molestie purus euismod fames odio volutpat eleifend turpis nec cras quam litora dignissim curae lacus platea sociis mauris hendrerit sed fringilla dignissim cum mi amet orci</p>
-                        <ul class="list list-app-download">
-                            <li>
-                                <a href="#" class="icon-windows box-icon" title="Get Windows Phone App" data-toggle="tooltip"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="icon-apple box-icon" title="Get iPhone App" data-toggle="tooltip"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="icon-android box-icon" title="Get Android App" data-toggle="tooltip"></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="span3">
-                        <h5>Koupon on Twitter</h5>
-                        <!-- START TWITTER -->
-                        <div class="twitter-ticker" id="twitter-ticker"></div>
-                        <!-- END TWITTER -->
-                    </div>
-                    <div class="span3">
-                        <h5>Recent News</h5>
-                        <ul class="list post-list">
-                            <li class="post-thumb">
-                                <h5 class="title"><a href="#">Gravida porttitor vulputate</a></h5><small>05 August, 2013</small>
-                                <p class="post-desciption">Dignissim phasellus magnis mus duis nisl ut lacus vehicula velit</p>
-                            </li>
-                            <li class="post-thumb">
-                                <h5 class="title"><a href="#">A duis</a></h5><small>29 July, 2013</small>
-                                <p class="post-desciption">Class augue curae accumsan tempor semper id integer adipiscing mattis</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row row-wrap">
-                <div class="span3">
-                    <h5>About Koupon</h5>
-                    <p>Tellus auctor sem sociosqu cras cursus vitae erat aliquam adipiscing iaculis suscipit curabitur hac hac congue netus integer ridiculus volutpat varius suspendisse velit venenatis facilisi velit quis volutpat enim ipsum</p>
-                </div>
-                <div class="span2">
-                    <h5>Company</h5>
-                    <ul class="list">
-                        <li><a href="#">Home</a>
-                        </li>
-                        <li><a href="#">Blog</a>
-                        </li>
-                        <li><a href="#">Press</a>
-                        </li>
-                        <li><a href="#">Jobs</a>
-                        </li>
-                        <li><a href="#">Investors</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="span2">
-                    <h5>For Business</h5>
-                    <ul class="list">
-                        <li><a href="#">Advertising</a>
-                        </li>
-                        <li><a href="#">Runnig a Deal</a>
-                        </li>
-                        <li><a href="#">Accept Payments</a>
-                        </li>
-                        <li><a href="#">Referral Program</a>
-                        </li>
-                        <li><a href="#">Developers/API</a>
-                        </li>
-                        <li><a href="#">Merchant Terms</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="span2">
-                    <h5>Get Help</h5>
-                    <ul class="list">
-                        <li><a href="#">FAQ</a>
-                        </li>
-                        <li><a href="#">Customer Support</a>
-                        </li>
-                        <li><a href="#">Return Policy</a>
-                        </li>
-                        <li><a href="#">Terms Of Use</a>
-                        </li>
-                        <li><a href="#">Privacy Statement</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="span3">
-                    <h5>Keep in touch</h5>
-                    <p>Mauris mus tortor leo augue non sociosqu ridiculus sagittis odio</p>
-                    <ul class="list list-social">
-                        <li>
-                            <a href="#" class="icon-facebook box-icon" data-toggle="tooltip" title="Facebook"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="icon-twitter box-icon" data-toggle="tooltip" title="Twitter"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="icon-flickr box-icon" data-toggle="tooltip" title="Flickr"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="icon-linkedin box-icon" data-toggle="tooltip" title="Linkedin"></a>
-                        </li>
-                        <li>
-                            <a href="#" class="icon-tumblr box-icon" data-toggle="tooltip" title="Tumblr"></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- //////////////////////////////////
-//////////////END MAIN  FOOTER///////// 
-////////////////////////////////////-->
 
     <!-- Scripts queries -->
     <script src="js/jquery.js"></script>
@@ -297,20 +59,26 @@
 	    
 	 <!--   
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    -->
     
     <script src="js/gmap3.min.js"></script>
+    -->
     <script src="js/wilto_slider.min.js"></script>
     <script src="js/mediaelement.min.js"></script>
     <script src="js/fitvids.min.js"></script>
     <script src="js/mail.min.js"></script>
 	 <script src="js/angular.min.js"></script>
 	 <script src="js/angular-route.js"></script>
+	 <script src="js/ng-file-upload-shim.js"></script>
+	 <script src="js/ng-file-upload.js"></script>
 	 <script src="js/app.js"></script>
 
 	 
     <!-- Custom scripts -->
     <script src="js/custom.js"></script>
+    
+    <!-- Backend JS -->
+    
+    <!-- End Backend JS -->
 
 </body>
 

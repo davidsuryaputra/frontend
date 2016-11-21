@@ -145,8 +145,6 @@ var ul = $('#twitter-ticker').find(".tweet-list");
   };
   ticker();
 });
-
-/*
 $(function(){
   $('#gmap').gmap3({
     marker:{
@@ -159,8 +157,6 @@ $(function(){
     }
   });
 });
-*/
-
  $(function() {
       $('#wilto-slider-wrap').wiltoSlider();
     });

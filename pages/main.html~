@@ -1,4 +1,7 @@
-<div class="gap"></div>
+
+<div ng-include="'header.html'"></div>
+
+
 <!-- TOP AREA -->
     <div class="top-area">
         <!-- START BOOTSTRAP CAROUSEL -->
@@ -35,3 +38,6 @@
         <!-- END BOOTSTRAP CAROUSEL -->
     </div>
     <!-- END TOP AREA -->
+    
+    
+<div ng-include="'pages/footer.html'"></div>

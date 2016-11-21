@@ -1,25 +1,31 @@
-var rentalkika = angular.module('rentalkika', ['ngRoute']);
+var rentalkika = angular.module('rentalkika', ['ngRoute', 'ngFileUpload']);
 
+//frontend routing
 rentalkika.config(function ($routeProvider) {
 	$routeProvider
 	.when('/', {
-		templateUrl : 'pages/main.html'	
+		templateUrl : 'pages/main.html',	
+		title: "Home"
 	})
 	.when('/sewa_mobil', {
 		templateUrl : 'pages/sewa_mobil.html',
-		controller : 'FilterController'	
+		controller : 'FilterController',
+		title: "Sewa Mobil"	
 	})
 	.when('/contact', {
 		templateUrl : 'pages/contact.html',
-		controller : 'ContactController'
+		controller : 'ContactController',
+		title: "Hubungi Kami"
 	})
 	.when('/register', {
 		templateUrl : 'pages/register.html',
-		controller: 'RegisterController'
+		controller: 'RegisterController',
+		title: "Register Member"
 	})
 	.when('/register_partner', {
 		templateUrl : 'pages/register_partner.html',
-		controller: 'RegisterPartnerController'
+		controller: 'RegisterPartnerController',
+		title: "Register Partner"
 	})
 	.when('/dashboard', {
 		templateUrl : 'pages/backend/dashboard.html'
@@ -27,6 +33,44 @@ rentalkika.config(function ($routeProvider) {
 	})
 	.otherwise({redirectTo : '/'});
 	
+});
+
+//backend routing
+rentalkika.config(function ($routeProvider) {
+	$routeProvider
+	.when('/admin/login', {
+		title: "Admin",
+		template: "haloxxx"
+	});
+});
+
+rentalkika.run(function ($rootScope, $route, authService) {
+	
+	$rootScope.$on('$routeChangeSuccess', function () {
+		//alert('route');
+		document.title = $route.current.title;
+	});	
+	
+	$rootScope.fbLoggedIn = authService.fb_logged_in();
+	console.log($rootScope.fbLoggedIn);
+	//init fb login
+	window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '218120761958155',
+	      xfbml      : true,
+	      version    : 'v2.8'
+	    });
+	    FB.AppEvents.logPageView();
+	  };
+	
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));	
+	//end fb login
 });
 
 
@@ -255,26 +299,9 @@ rentalkika.factory('authService', function($scope, $http, $location){
 
 
 
-rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $route, $window, $location, sessionService){
+rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $route, $window, $location, sessionService, authService){
 	
-	//init fb login
-	window.fbAsyncInit = function() {
-	    FB.init({
-	      appId      : '218120761958155',
-	      xfbml      : true,
-	      version    : 'v2.8'
-	    });
-	    FB.AppEvents.logPageView();
-	  };
-	
-	  (function(d, s, id){
-	     var js, fjs = d.getElementsByTagName(s)[0];
-	     if (d.getElementById(id)) {return;}
-	     js = d.createElement(s); js.id = id;
-	     js.src = "//connect.facebook.net/en_US/sdk.js";
-	     fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));	
-	//end fb login
+
 	
 	
 	$scope.login = { username: "", password: "" };
@@ -314,13 +341,7 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 			sessionService.set('sessionToken', response.data.sessionToken);
 				
 			$location.path('/dashboard');
-			if(sessionService.get('sessionToken') != null){
-				//$scope.isLoggedIn = true;	
-				$scope.hasNotsignedIn = false;	
-				}else {
-				$scope.hasNotsignedIn = true;	
-				//$scope.isLoggedIn = false;
-				}	
+			$scope.loggedIn = authService.app_logged_in();
 				
 		}, function (error){
 			$scope.error = error.data.error;
@@ -330,21 +351,45 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 	}
 
 	$scope.FBLogin = function (){
-		 FB.login(function(response) {
-		 	console.log(response);
-	    if (response.authResponse) {
-	     //console.log('Welcome!  Fetching your information.... ');
-	     FB.api('/me', function(response) {
-	       console.log('Good to see you, ' + response.name + '.');
-	     	 //console.log(response);
-			 //var expDate = new Date(new Date().getTime() + $localStorage.expiresIn * 1000).toISOString();
-
-	     });
-	    } else {
-	     console.log('User cancelled login or did not fully authorize.');
-	     //console.log(response);
-	    }
+		authService.fbLogin().then(function (response) {
+			
+		var dataLoginFb = {
+		authData: {
+				facebook: {
+					id: sessionService.get('fb_id'),
+					access_token: sessionService.get('fb_access_token'),
+					expiration_date: sessionService.get('fb_expiration_date')
+				}				
+			}
+		}
+		
+		var configLoginFb = { 
+		
+			headers: {
+				'X-Parse-Application-Id' : 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58',
+				'Content-Type' : 'application/json'
+				}
+		};
+		
+		$http.post('http://128.199.249.233:1337/parse/users', dataLoginFb, configLoginFb).then(function (response) {
+			console.log(response.data);
+			$.magnificPopup.close();
+			sessionService.set('isLoggedIn', 'yes');
+			sessionService.set('role', response.data.role_name);
+			sessionService.set('sessionToken', response.data.sessionToken);
+				
+			$location.path('/dashboard');
+			$scope.loggedIn = authService.app_logged_in();
+			console.log($scope.loggedIn);
+		}, function (error) {
+			console.log(error);
 		});
+			
+		}, function (error) {
+			console.log(error);
+		});
+
+		
 	}
 	
 	$scope.logout = function () {
@@ -352,6 +397,10 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 		sessionService.destroy('isLoggedIn');	
 		sessionService.destroy('role');	
 		sessionService.destroy('sessionToken');
+		sessionService.destroy('fb_id');
+		sessionService.destroy('fb_access_token');
+		sessionService.destroy('fb_expiration_date');
+		
 		
 		if(sessionService.get('sessionToken') != null){
 		//$scope.isLoggedIn = true;	
@@ -361,9 +410,9 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 		//$scope.isLoggedIn = false;
 		}
 		
-		//$window.location.href = "/";
+		$window.location.href = "/";
 		//$scope.$apply(function () {
-		$location.path("/register");	
+		//$location.path("/register");	
 		//});
 		//$route.reload();
 		
@@ -374,7 +423,7 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 	
 });
 
-rentalkika.controller('RegisterController', function ($scope, $http, $location, fileUpload) {
+rentalkika.controller('RegisterController', function ($scope, $http, $location, Upload, $timeout, authService) {
 	
 	$scope.customer = {
 	username: '', 
@@ -389,22 +438,18 @@ rentalkika.controller('RegisterController', function ($scope, $http, $location, 
 	family_address: '',
 	};
 	
-	$scope.upload = function () {
+	$scope.registerFB = function () {
 		
-			//upload file
-			var file = $scope.myFile;
-               
-         console.log('file is ' );
-         console.dir(file);
-         console.log(file.name);
-         
-         var uploadUrl = "http://128.199.249.233:1337/parse/files/"+file.name;
-         fileUpload.uploadFileToUrl(file, uploadUrl);
-			//end upload file
-	
+		authService.fbLogin().then(function(response){
+			$scope.fbLoggedIn = authService.fb_logged_in();
+			console.log($scope.fbLoggedIn);
+		}, function (error) {
+			console.log(error);		
+		})
 	}
+
 	
-	$scope.handleRegister = function () {
+	$scope.handleRegister = function (file) {
 		
 		var data = {
 			username: $scope.customer.username,
@@ -417,7 +462,7 @@ rentalkika.controller('RegisterController', function ($scope, $http, $location, 
 			role_name: "customer"
 		};
 		
-		
+		$scope.file = file;
 		
 		var configRegister = { 
 		
@@ -431,45 +476,66 @@ rentalkika.controller('RegisterController', function ($scope, $http, $location, 
 			console.log(response);	
 			$scope.userObjectId = response.data.objectId;
 			console.log($scope.userObjectId);
-			
-			/*
-			//upload file
-			var file = $scope.myFile;
-               
-         console.log('file is ' );
-         console.dir(file);
-         
-         var uploadUrl = "http://128.199.249.233:1337/parse/files/"+file.name;
-         fileUpload.uploadFileToUrl(file, uploadUrl);
-			//end upload file
-			*/
-			
-			var dataProfileCustomer = {
-				user_id : {
-					__type: "Pointer",
-					className: "_User",
-					objectId: $scope.userObjectId
-				},
-				family_name: $scope.customer.family_name,
-				family_phone: $scope.customer.family_phone,
-				family_address: $scope.customer.family_address
-			};
-			
-			$http.post('http://128.199.249.233:1337/parse/classes/customer', dataProfileCustomer, configRegister).then(function (response) {
-				console.log(response.data);
-				$location.path('/');
+
+			//upload
+			$scope.file.upload = Upload.http({
+		      //url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+		      //data: {username: $scope.username, file: file},
+		      url: 'http://128.199.249.233:1337/parse/files/'+$scope.file.name,
+		      headers: {
+		       'X-Parse-Application-Id' : 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58',
+		       'Content-Type': $scope.file.type
+		      },
+		      data: $scope.file
+		    });
+		
+		    $scope.file.upload.then(function (response) {
+		      $timeout(function () {
+		        $scope.file.result = response.data;
+		        console.log(response.data);
+		        //berhasil
 					
-			}, function (error) {
-				alert(error.data.error);
-			});
+				  var dataProfileCustomer = {
+					user_id : {
+						__type: "Pointer",
+						className: "_User",
+						objectId: $scope.userObjectId
+					},
+					family_name: $scope.customer.family_name,
+					family_phone: $scope.customer.family_phone,
+					family_address: $scope.customer.family_address,
+					ktp_user: {
+						name: response.data.name,
+						url: response.data.url,
+						__type: "File"
+					}
+				};
+				
+				$http.post('http://128.199.249.233:1337/parse/classes/customer', dataProfileCustomer, configRegister).then(function (response) {
+					console.log(response.data);
+					$location.path('/');
+						
+				}, function (error) {
+					alert(error.data.error);
+				});					
+							        
+		        
+		      });
+		    }, function (response) {
+		      if (response.status > 0)
+		        $scope.errorMsg = response.status + ': ' + response.data;
+		        console.log(response.data);
+		        //gagal
+		    });
+			//end upload
+
+			
+			
 			
 		}, function (error) {
 			alert(error.data.error);
+			//error first req
 		});
-		
-		
-
-		
 	
 	}
 
@@ -477,7 +543,7 @@ rentalkika.controller('RegisterController', function ($scope, $http, $location, 
 });
 
 
-rentalkika.controller('RegisterPartnerController', function ($scope, $http, $location, fileUpload) {
+rentalkika.controller('RegisterPartnerController', function ($scope, $http, $location, Upload, $timeout, authService, sessionService) {
 	
 	$scope.partner = {
 	username: '', 
@@ -492,24 +558,18 @@ rentalkika.controller('RegisterPartnerController', function ($scope, $http, $loc
 	owner_address: '',
 	};
 	
-	/*
-	$scope.upload = function () {
+	
+	$scope.registerFB = function () {
 		
-			//upload file
-			var file = $scope.myFile;
-               
-         console.log('file is ' );
-         console.dir(file);
-         console.log(file.name);
-         
-         var uploadUrl = "http://128.199.249.233:1337/parse/files/"+file.name;
-         fileUpload.uploadFileToUrl(file, uploadUrl);
-			//end upload file
-	
+		authService.fbLogin().then(function(response){
+			$scope.fbLoggedIn = authService.fb_logged_in();
+			console.log($scope.fbLoggedIn);
+		}, function (error) {
+			console.log(error);		
+		})
 	}
-	*/
 	
-	$scope.handleRegister = function () {
+	$scope.handleRegister = function (file) {
 		
 		var data = {
 			username: $scope.partner.username,
@@ -519,9 +579,18 @@ rentalkika.controller('RegisterPartnerController', function ($scope, $http, $loc
 			address: $scope.partner.address,
 			phone: $scope.partner.phone,
 			status: "waiting",
-			role_name: "partner"
+			role_name: "partner",
+			authData: {
+				facebook: {
+					id: sessionService.get('fb_id'),
+					access_token: sessionService.get('fb_access_token'),
+					expiration_date: sessionService.get('fb_expiration_date')
+				}				
+			}
 		};
 		
+		$scope.file = file;
+		console.log($scope.file);
 		
 		
 		var configRegister = { 
@@ -536,46 +605,67 @@ rentalkika.controller('RegisterPartnerController', function ($scope, $http, $loc
 			console.log(response);	
 			$scope.userObjectId = response.data.objectId;
 			console.log($scope.userObjectId);
+			console.log($scope.file);
 			
-			/*
-			//upload file
-			var file = $scope.myFile;
-               
-         console.log('file is ' );
-         console.dir(file);
-         
-         var uploadUrl = "http://128.199.249.233:1337/parse/files/"+file.name;
-         fileUpload.uploadFileToUrl(file, uploadUrl);
-			//end upload file
-			*/
 			
-			var dataProfileOwner = {
-				user_id : {
-					__type: "Pointer",
-					className: "_User",
-					objectId: $scope.userObjectId
-				},
-				partner_owner: $scope.partner.owner_name,
-				owner_phone: $scope.partner.owner_phone,
-				owner_address: $scope.partner.owner_address
-			};
-			
+			//upload
+			$scope.file.upload = Upload.http({
+		      //url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+		      //data: {username: $scope.username, file: file},
+		      url: 'http://128.199.249.233:1337/parse/files/'+$scope.file.name,
+		      headers: {
+		       'X-Parse-Application-Id' : 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58',
+		       'Content-Type': $scope.file.type
+		      },
+		      data: $scope.file
+		    });
+		
+		    $scope.file.upload.then(function (response) {
+		      $timeout(function () {
+		        $scope.file.result = response.data;
+		        console.log(response.data);
+		        //berhasil
+					
+				var dataProfileOwner = {
+					user_id : {
+						__type: "Pointer",
+						className: "_User",
+						objectId: $scope.userObjectId
+					},
+					partner_owner: $scope.partner.owner_name,
+					owner_phone: $scope.partner.owner_phone,
+					owner_address: $scope.partner.owner_address,
+					ktp_owner: {
+						name: response.data.name,
+						url: response.data.url,
+						__type: "File"
+					}
+				};
+				
 			$http.post('http://128.199.249.233:1337/parse/classes/partner', dataProfileOwner, configRegister).then(function (response) {
 				console.log(response.data);
 				$location.path('/');
 					
 			}, function (error) {
 				alert(error.data.error);
-			});
+			});				
+							        
+		        
+		 });
+		 
+		    }, function (response) {
+		      if (response.status > 0)
+		        $scope.errorMsg = response.status + ': ' + response.data;
+		        console.log(response.data);
+		        //gagal
+		    });
+			//end upload
+			
 			
 		}, function (error) {
 			alert(error.data.error);
 		});
 		
-		
-
-		
-	
 	}
 
 
@@ -600,6 +690,75 @@ rentalkika.factory('sessionService', function () {
 	return sessionService;
 	
 });
+
+rentalkika.factory('authService', function (sessionService, $rootScope, $q) {
+	
+	var authService = {};
+	
+	authService.fbLogin = function () {
+			var defer = $q.defer();
+			var FB = window.FB;
+			
+			FB.login(function(response) {
+		 	console.log(response);
+		 	
+		 	/*
+		 	authData: {
+				facebook: {
+					id: response.authResponse.userID,
+					access_token: response.authResponse.accessToken,
+					expiration_date: new Date(new Date().getTime() + response.authResponse.expiresIn * 1000).toISOString()
+				}		 	
+		 	}
+		 	*/
+		 	//;
+		 	//response.authResponse.userID
+		 	//response.authResponse.expiresIn;
+		 	
+	    if (response.authResponse) {
+	    	sessionService.set('fb_id', response.authResponse.userID);
+		 	sessionService.set('fb_access_token', response.authResponse.accessToken);
+		 	sessionService.set('fb_expiration_date', new Date(new Date().getTime() + response.authResponse.expiresIn * 1000).toISOString());
+	     //console.log('Welcome!  Fetching your information.... ');
+	     FB.api('/me', function(response) {
+	       defer.resolve('Good to see you, ' + response.name + '.');
+	     	 console.log(response);
+	     	 //$scope.fbName = response.name;
+			 //var expDate = new Date(new Date().getTime() + $localStorage.expiresIn * 1000).toISOString();
+				
+	     });
+	     //$location.path('/register');
+	     //$rootScope.fbLoggedIn = true;
+	     
+	    } else {
+	     defer.reject('User cancelled login or did not fully authorize.');
+	     //console.log(response);
+	    }
+		});
+		return defer.promise;
+	
+	};
+	
+	authService.fb_logged_in = function () {
+		if(sessionService.get('fb_access_token') != null){
+			return true;
+		}else {
+			return false;		
+		}
+	};
+	
+	authService.app_logged_in = function () {
+		if(sessionService.get('sessionToken') != null){
+			return true;
+		}else {
+			return false;		
+		}
+	};
+	
+	return authService;
+
+});
+
 
 rentalkika.directive('passwordConfirm', ['$parse', function ($parse) {
  return {
@@ -626,40 +785,4 @@ rentalkika.directive('passwordConfirm', ['$parse', function ($parse) {
   };
 }]);
 
-rentalkika.directive('fileModel', ['$parse', function ($parse) {
-   return {
-      restrict: 'A',
-      link: function(scope, element, attrs) {
-         var model = $parse(attrs.fileModel);
-         var modelSetter = model.assign;
-         
-         element.bind('change', function(){
-            scope.$apply(function(){
-               modelSetter(scope, element[0].files[0]);
-            });
-         });
-      }
-   };
-}]);
 
-rentalkika.service('fileUpload', ['$http', function ($http) {
-   this.uploadFileToUrl = function(file, uploadUrl){
-      var fd = new FormData();
-      fd.append('file', file);
-   
-      $http.post(uploadUrl, fd, {
-         transformRequest: angular.identity,
-         headers: {
-         	'X-Parse-Application-Id': 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58',
-         	'Content-Type': undefined
-         	}
-      })
-   
-      .success(function(response){
-      	console.log(response);
-      })
-   
-      .error(function(){
-      });
-   }
-}]);
