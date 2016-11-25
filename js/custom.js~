@@ -43,11 +43,6 @@ $(window).load(function() {
 
 
 $(function(){
-	if($('#jancok').length){
-		alert('jancok exists');
-	}else {
-		alert('notfound');	
-	}
 	$('#flexnav').flexNav();
 });
 

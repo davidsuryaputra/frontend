@@ -1,49 +1,5 @@
 var rentalkika = angular.module('rentalkika', ['ngRoute', 'ngFileUpload']);
 
-//frontend routing
-rentalkika.config(function ($routeProvider) {
-	$routeProvider
-	.when('/', {
-		templateUrl : 'pages/main.html',	
-		title: "Home"
-	})
-	.when('/sewa_mobil', {
-		templateUrl : 'pages/sewa_mobil.html',
-		controller : 'FilterController',
-		title: "Sewa Mobil"	
-	})
-	.when('/contact', {
-		templateUrl : 'pages/contact.html',
-		controller : 'ContactController',
-		title: "Hubungi Kami"
-	})
-	.when('/register', {
-		templateUrl : 'pages/register.html',
-		controller: 'RegisterController',
-		title: "Register Member"
-	})
-	.when('/register_partner', {
-		templateUrl : 'pages/register_partner.html',
-		controller: 'RegisterPartnerController',
-		title: "Register Partner"
-	})
-	.when('/dashboard', {
-		templateUrl : 'pages/backend/dashboard.html'
-		//controller : 'DashboardController'
-	})
-	.otherwise({redirectTo : '/'});
-	
-});
-
-//backend routing
-rentalkika.config(function ($routeProvider) {
-	$routeProvider
-	.when('/admin/login', {
-		title: "Admin Page",
-		template: "haloxxx"
-	});
-});
-
 rentalkika.run(function ($rootScope, $route, authService) {
 	
 	$rootScope.$on('$routeChangeSuccess', function () {
@@ -52,6 +8,8 @@ rentalkika.run(function ($rootScope, $route, authService) {
 	});	
 	
 	$rootScope.fbLoggedIn = authService.fb_logged_in();
+	$rootScope.loggedIn = authService.app_logged_in();
+	
 	console.log($rootScope.fbLoggedIn);
 	//init fb login
 	window.fbAsyncInit = function() {
@@ -73,7 +31,15 @@ rentalkika.run(function ($rootScope, $route, authService) {
 	//end fb login
 });
 
+rentalkika.controller('FlexnavController', function () {
 
+		$('#flexnav').flexNav();
+		
+		
+		//init plugin nav with #something here
+		//#something @/pages/header.html   
+
+});
 rentalkika.controller('FilterController', function ($scope, $http) {
 	var config = { headers: {'X-Parse-Application-Id' : 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58'}};
 	
@@ -301,17 +267,20 @@ rentalkika.factory('authService', function($scope, $http, $location){
 
 rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $route, $window, $location, sessionService, authService){
 	
-
+	// Lighbox text
+	$('.popup-text').magnificPopup({
+	    removalDelay: 500,
+	    closeBtnInside: true,
+	    callbacks: {
+	        beforeOpen: function () {
+	            this.st.mainClass = this.st.el.attr('data-effect');
+	        }
+	    },
+	    midClick: true
+	});
 	
 	
 	$scope.login = { username: "", password: "" };
-	if(sessionService.get('sessionToken') != null){
-	//$scope.isLoggedIn = true;	
-	$scope.hasNotsignedIn = false;	
-	}else {
-	$scope.hasNotsignedIn = true;	
-	//$scope.isLoggedIn = false;
-	}
 	
 	$scope.handleLogin = function () {
 		
@@ -339,9 +308,10 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 			sessionService.set('isLoggedIn', 'yes');
 			sessionService.set('role', response.data.role_name);
 			sessionService.set('sessionToken', response.data.sessionToken);
+			sessionService.set('user_id', response.data.objectId);
 				
-			$location.path('/dashboard');
-			$scope.loggedIn = authService.app_logged_in();
+			//$location.path('/dashboard');
+			$rootScope.loggedIn = authService.app_logged_in();
 				
 		}, function (error){
 			$scope.error = error.data.error;
@@ -377,8 +347,9 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 			sessionService.set('isLoggedIn', 'yes');
 			sessionService.set('role', response.data.role_name);
 			sessionService.set('sessionToken', response.data.sessionToken);
+			sessionService.set('user_id', response.data.objectId);
 				
-			$location.path('/dashboard');
+			$location.path('/');
 			$scope.loggedIn = authService.app_logged_in();
 			console.log($scope.loggedIn);
 		}, function (error) {
@@ -394,29 +365,14 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 	
 	$scope.logout = function () {
 		
-		sessionService.destroy('isLoggedIn');	
-		sessionService.destroy('role');	
-		sessionService.destroy('sessionToken');
-		sessionService.destroy('fb_id');
-		sessionService.destroy('fb_access_token');
-		sessionService.destroy('fb_expiration_date');
-		
-		
-		if(sessionService.get('sessionToken') != null){
-		//$scope.isLoggedIn = true;	
-		$scope.hasNotsignedIn = false;	
-		}else {
-		$scope.hasNotsignedIn = true;	
-		//$scope.isLoggedIn = false;
-		}
-		
-		$window.location.href = "/";
-		//$scope.$apply(function () {
-		//$location.path("/register");	
-		//});
-		//$route.reload();
-		
-		
+		authService.logout().then(function (response) {
+			console.log('anuu');
+			$rootScope.loggedIn = false;
+			$location.path('/xyz');
+			console('logout success');
+		}, function (error) {
+			console.log(error);
+		});
 		
 	}
 	
@@ -671,118 +627,272 @@ rentalkika.controller('RegisterPartnerController', function ($scope, $http, $loc
 
 });
 
-rentalkika.factory('sessionService', function () {
+rentalkika.controller('OrderSewaMobilController', function ($filter, $scope, $http, $routeParams, sessionService, masterService, orderSewaService) {
 	
-	var sessionService = {};
-	
-	sessionService.set = function (key, value) {
-		return sessionStorage.setItem(key, value);
-	};
-	
-	sessionService.get = function (key) {
-		return sessionStorage.getItem(key);
-	};
+		$(function () {
+    		$("#tanggal_sewa").datetimepicker({
+				format: 'dd-mm-yyyy hh:ii',
+				setStartDate : new Date()    		
+    		});
+    		
+    		$("select[name='ambil_di_pool']").on('change', function () {
+				if(this.value == "0"){
+					$("#alamat").show();				
+				}else {
+					$("#alamat").hide();
+				}    			
+    		});
+    		
+    		$("#durasi_sewa").on('change', function () {
+    			$("#durasi_sewa_order").html(this.value+" Jam");
+    			var tanggal_sewa = moment($("input[id='tanggal_sewa']").val(), "DD-MM-YYYY HH:mm");
+				//console.log(tanggal_sewa);    			
+    			tanggal_sewa.add(this.value, 'hours');
+    			$("input[name='tanggal_pengembalian']").val(tanggal_sewa.format('DD-MM-YYYY HH:mm'));
+    		});
+    	});
+    	
+		orderSewaService.vehicleDetail($routeParams.license_plate).then(function(response){
+			$scope.vehicle = response;
+			//console.log($scope.vehicle);
+			orderSewaService.infoTarif($scope.vehicle.zone_id, $scope.vehicle.car_class_id).then(function (response) {
+				$scope.infoTarif = response;
+				//console.log($scope.infoTarif);
+			}, function (error) {
+				console.log(error);
+			});
 		
-	sessionService.destroy = function (key) {
-		return sessionStorage.removeItem(key);
-	};	
-	
-	return sessionService;
-	
-});
-
-rentalkika.factory('authService', function (sessionService, $rootScope, $q) {
-	
-	var authService = {};
-	
-	authService.fbLogin = function () {
-			var defer = $q.defer();
-			var FB = window.FB;
-			
-			FB.login(function(response) {
-		 	console.log(response);
-		 	
-		 	/*
-		 	authData: {
-				facebook: {
-					id: response.authResponse.userID,
-					access_token: response.authResponse.accessToken,
-					expiration_date: new Date(new Date().getTime() + response.authResponse.expiresIn * 1000).toISOString()
-				}		 	
-		 	}
-		 	*/
-		 	//;
-		 	//response.authResponse.userID
-		 	//response.authResponse.expiresIn;
-		 	
-	    if (response.authResponse) {
-	    	sessionService.set('fb_id', response.authResponse.userID);
-		 	sessionService.set('fb_access_token', response.authResponse.accessToken);
-		 	sessionService.set('fb_expiration_date', new Date(new Date().getTime() + response.authResponse.expiresIn * 1000).toISOString());
-	     //console.log('Welcome!  Fetching your information.... ');
-	     FB.api('/me', function(response) {
-	       defer.resolve('Good to see you, ' + response.name + '.');
-	     	 console.log(response);
-	     	 //$scope.fbName = response.name;
-			 //var expDate = new Date(new Date().getTime() + $localStorage.expiresIn * 1000).toISOString();
-				
-	     });
-	     //$location.path('/register');
-	     //$rootScope.fbLoggedIn = true;
-	     
-	    } else {
-	     defer.reject('User cancelled login or did not fully authorize.');
-	     //console.log(response);
-	    }
+		}, function (error) {
+			console.log(error);
 		});
-		return defer.promise;
-	
-	};
-	
-	authService.fb_logged_in = function () {
-		if(sessionService.get('fb_access_token') != null){
-			return true;
-		}else {
-			return false;		
+		
+		orderSewaService.tax().then(function (response){
+			$scope.taxes = response; 
+			console.log(response);
+		}, function (error) {
+			console.log(error);
+		});
+		
+		masterService.cities().then(function (response){
+			$scope.cities = response;
+		}, function (error) {
+			console.log(error);
+		});
+		
+		
+		$scope.coupon = function () {
+			
+			orderSewaService.coupon($scope.couponCode).then(function (response) {
+				//console.log(response.length);
+				
+				
+				if (response.length == 0) {
+					console.log('coupon not found');
+				}else {
+					var expired_date = response[0].expired_date.iso;
+					var current_date = new Date().toISOString();
+					if(current_date > expired_date){
+						$scope.coupon_value = "Coupon is Expired"; 
+					}else {
+						if(response[0].coupon_is_percent == 1){
+							$scope.coupon_value = response[0].coupon_value + "%";
+						}else {
+							$scope.coupon_value = "Rp. "+response[0].coupon_value;					
+						}
+					}
+				}
+				
+				
+				
+				
+				//console.log(response);
+			}, function (error) {
+				console.log(error);				
+			});
+			
+		};
+		
+		$scope.total = function () {
+			
+			if ($scope.tujuan_sewa == undefined || $scope.durasi_sewa == undefined){
+				console.log('Tujuan dan durasi wajib di isi');			
+			}else{
+				
+			/*	
+			if ($scope.couponCode == undefined) {
+				var couponCode = "";
+			}else {
+				var couponCode = $scope.couponCode;			
+			}
+			*/
+			//alert(couponCode);
+			
+			
+			orderSewaService.coupon($scope.couponCode).then(function (response) {
+				
+				//dasar
+				var tarifDasar = $filter('filter')($scope.infoTarif, { description: 'dasar'})[0];
+				console.log(tarifDasar);
+				var total_tarif_dasar = ($scope.durasi_sewa / 14) * tarifDasar.value;
+				console.log($scope.durasi_sewa);
+				console.log("dasar "+total_tarif_dasar);				
+				
+				//luar kota
+				var tarifLuarKota = $filter('filter')($scope.infoTarif, { description: 'luar kota'})[0];
+				if($scope.vehicle.city_id == $scope.tujuan_sewa){
+					var is_luar_kota = 0;
+					var tarif_luar_kota = 0;
+				}else {
+					var is_luar_kota = 1;
+					var tarif_luar_kota = $scope.durasi_sewa * tarifLuarKota.value;			
+				}
+				console.log("luar kota"+tarif_luar_kota);
+				
+				var dasar_luar_kota = total_tarif_dasar + tarif_luar_kota;
+				console.log("dasar luar kota "+dasar_luar_kota);				
+				
+				//diskon
+				if (response.length == 0) {
+					var diskon = 0;				
+				}else {
+					if (response[0].coupon_is_percent == 1) {
+						var diskon = (response[0].coupon_value/100) * dasar_luar_kota;
+					}else {
+						var diskon = response[0].coupon_value;					
+					}	
+				}
+				console.log("diskon "+diskon);
+				
+				
+				var dasar_luar_kota_min_diskon = dasar_luar_kota - diskon;
+				console.log("dasar_luar_kota_min_diskon "+dasar_luar_kota_min_diskon);
+				var pajak = (12/100) * dasar_luar_kota_min_diskon;
+				console.log("pajak " + pajak);
+				$scope.total_value = dasar_luar_kota_min_diskon + pajak;
+				console.log("total"+$scope.total_value);			
+				
+			}, function (error) {
+			
+			});
+			
+			
+			
+			
+			}
+			
+			
+			
+			/*
+			console.log(tarifDasar);		
+			console.log(tarifLuarKota);
+			console.log($scope.durasi_sewa);		
+			console.log($scope.coupon_value);
+			*/			
+			
+		};
+		
+		$scope.order = function () {
+			if($scope.tujuan_sewa == undefined || $scope.tanggal_sewa == undefined || $scope.ambil_di_pool == undefined){
+				alert('Lengkapi form terlebih dahulu');			
+			}else{
+				
+				var rent_start = moment($scope.tanggal_sewa, "DD-MM-YYYY HH:mm");
+				var rent_expired = moment($scope.tanggal_pengembalian, "DD-MM-YYYY HH:mm");
+				
+				
+				
+				var ppn_obj = $filter('filter')($scope.taxes, {tax_name: "PPN"})[0];
+				var pph_obj = $filter('filter')($scope.taxes, {tax_name: "PPH"})[0];
+				
+				orderSewaService.coupon($scope.couponCode).then(function (response) {
+					
+					if (response.length == 0) {
+						var coupon_id = "";					
+					}else {
+						var coupon_id = response[0].objectId;					
+					}
+					
+					var config = {
+						headers: {
+							'X-Parse-Application-Id': 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58',
+							'Content-Type': 'application/json'					
+						}				
+					}
+					
+					var data = {
+						status: 'waiting',
+						vehicle_id: {
+							__type: "Pointer",
+							className: "vehicle",
+							objectId: $scope.vehicle.vehicle_id					
+						},
+						partner_id: {
+							__type: "Pointer",
+							className: "partner",
+							objectId: $scope.vehicle.partner_id					
+						},
+						ppn: {
+							__type: "Pointer",
+							className: "tax",
+							objectId: ppn_obj.objectId
+						},
+						pph: {
+							__type: "Pointer",
+							className: "tax",
+							objectId: pph_obj.objectId
+						},
+						to_city_id: {
+							__type: "Pointer",
+							className: "city",
+							objectId: $scope.tujuan_sewa
+						},
+						from_city_id: {
+							__type: "Pointer",
+							className: "city",
+							objectId: $scope.vehicle.city_id
+						},
+						total:  $scope.total_value,
+						rent_start: {
+							__type: "Date",
+							iso: rent_start
+						},
+						rent_expired: {
+							__type: "Date",
+							iso: rent_expired
+						
+						},
+						take_at_pool: parseInt($scope.ambil_di_pool),
+						alamat_pengiriman: $scope.alamat,
+						client_id: {
+							__type: "Pointer",
+							className: "_User",
+							objectId: sessionService.get('user_id') 
+						},
+						coupon_id: {
+							__type: "Pointer",
+							className: "coupon",
+							objectId: coupon_id
+						}				
+					}
+					
+					$http.post('http://128.199.249.233:1337/parse/classes/tr_sewa', data, config).then(function (response) {
+						alert('Order berhasil dikirim');
+					}, function (error) {
+						console.log(error);
+					});
+				
+					
+				}, function (error) {
+					console.log(error);
+				});
+				
+				//console.log($scope.coupon_obj); 				
+				
+				
+							
+							
+			}
+			
 		}
-	};
-	
-	authService.app_logged_in = function () {
-		if(sessionService.get('sessionToken') != null){
-			return true;
-		}else {
-			return false;		
-		}
-	};
-	
-	return authService;
-
+		
 });
-
-
-rentalkika.directive('passwordConfirm', ['$parse', function ($parse) {
- return {
-    restrict: 'A',
-    scope: {
-      matchTarget: '=',
-    },
-    require: 'ngModel',
-    link: function link(scope, elem, attrs, ctrl) {
-      var validator = function (value) {
-        ctrl.$setValidity('match', value === scope.matchTarget);
-        return value;
-      }
- 
-      ctrl.$parsers.unshift(validator);
-      ctrl.$formatters.push(validator);
-      
-      // This is to force validator when the original password gets changed
-      scope.$watch('matchTarget', function(newval, oldval) {
-        validator(ctrl.$viewValue);
-      });
-
-    }
-  };
-}]);
-
-

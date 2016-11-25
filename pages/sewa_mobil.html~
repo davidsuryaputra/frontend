@@ -1,3 +1,5 @@
+<div ng-include="'header.html'"></div>
+
 <div class="gap"></div> 
  <div class="container">
         <div class="row">
@@ -35,7 +37,7 @@
                             <img src="{{ vehicle.vehicle_photo.url }}" alt="Image Alternative text" title="AMaze" />
                             <div class="coupon-inner">
                                 <h5 class="coupon-title">{{ vehicle.partner_id.user_id.full_name }}</h5>
-                                <p class="coupon-desciption">{{ vehicle.car_id.car_name }}{{ vehicle.vehicle_year }} {{ vehicle.car_class }}</p>
+                                <p class="coupon-desciption">{{ vehicle.car_id.car_name }} {{ vehicle.vehicle_year }} {{ vehicle.car_class }}</p>
                                 <div class="coupon-meta"><span class="coupon-time">{{ vehicle.lokasi_mobil }}</span>
                                     <div class="coupon-price"><span class="coupon-new-price">Sewa</span>
                                     </div>
@@ -74,3 +76,6 @@
             </div>
         </div>
     </div>
+</div>
+
+<div ng-include="'footer.html'"></div>

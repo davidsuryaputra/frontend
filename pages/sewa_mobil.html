@@ -1,3 +1,5 @@
+<div ng-include="'header.html'"></div>
+
 <div class="gap"></div> 
  <div class="container">
         <div class="row">
@@ -31,7 +33,7 @@
  						<div ng-switch="vehicle_exists">
                     <div class="span3" ng-repeat="vehicle in vehicles" ng-switch-when="yes">
                         <!-- COUPON THUMBNAIL -->
-                        <a href="order_sewa_mobil.html?license_plate={{ vehicle.vehicle_license_plate }}" class="coupon-thumb">
+                        <a href="#order_sewa_mobil/{{ vehicle.vehicle_license_plate }}" class="coupon-thumb">
                             <img src="{{ vehicle.vehicle_photo.url }}" alt="Image Alternative text" title="AMaze" />
                             <div class="coupon-inner">
                                 <h5 class="coupon-title">{{ vehicle.partner_id.user_id.full_name }}</h5>
@@ -74,3 +76,6 @@
             </div>
         </div>
     </div>
+</div>
+
+<div ng-include="'footer.html'"></div>

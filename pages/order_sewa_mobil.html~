@@ -1,0 +1,121 @@
+<div ng-include="'header.html'"></div>
+
+<!-- //////////////////////////////////
+//////////////PAGE CONTENT///////////// 
+////////////////////////////////////-->
+
+<div class="gap"></div>
+    <div class="container">
+        <div class="row">
+            <div class="span3 sidebar-left">
+                <h4>Payment for {{ vehicle.license_plate }}</h4>
+                <!-- COUPON THUMBNAIL -->
+                <a href="#" class="coupon-thumb">
+                   <img src="{{ vehicle.photo.url }}" alt="Image Alternative text" />
+                   <div class="coupon-inner">
+                       <h5 class="coupon-title">{{ vehicle.partner_name }} ({{ vehicle.license_plate }})</h5>
+                       <p class="coupon-desciption">{{ vehicle.year + " " + vehicle.class }} </p>
+								                       
+                       <div class="coupon-meta">
+                       		<span class="coupon-time">Pool: {{ vehicle.pool_address + ", " + vehicle.city }}</span>
+                       </div>
+                       
+                   </div>
+               </a>
+               <!--
+                <div class="gap gap-small"></div>	<a class="btn btn-primary btn-block btn-large" href="#">Continue to PayPal</a>
+                <div class="gap gap-small"></div>
+                -->
+            </div>
+            <div class="span5">
+                <form ng-submit="order()" class="form-horizontal">
+                    <legend>Keterangan Order</legend>
+                    
+                    <label>Tujuan Sewa</label>
+                    <select class="span5" name="tujuan_sewa" ng-model="tujuan_sewa" ng-change="total()">
+							<option value="">Pilih!</option>                    
+							<option ng-repeat="city in cities" value="{{ city.objectId }}">
+							{{ city.city_name == vehicle.city ? city.city_name + " (Dalam Kota)" : city.city_name }}
+							</option>                    
+                    </select>
+                    
+                    <label>Tanggal Sewa</label>
+                    <input type="text" class="span5" id="tanggal_sewa" ng-model="tanggal_sewa">
+                    
+                    <label>Ambil di pool</label>
+                    <select class="span5" name="ambil_di_pool" ng-model="ambil_di_pool">
+                    	<option value="">Pilih!</option>
+                    	<option value="1">Ya</option>
+                    	<option value="0">Tidak, antar ke alamat saya</option>
+                    </select>
+                    
+                    <div id="alamat" style="display:none;" ng-model="alamat">
+                    <label>Alamat Pengiriman</label>
+                    <input type="text" class="span5" name="alamat">
+                    </div>
+                    
+                    <label>Durasi Sewa</label>
+                    <select class="span5" name="durasi_sewa" id="durasi_sewa" ng-model="durasi_sewa" ng-change="total()">
+                    	<option value="">Pilih</option>
+                    	<option value="14">14 Jam</option>
+                    	<option value="28">28 Jam</option>
+                    	<option value="42">42 Jam</option>
+                    </select>
+                    
+                    <label>Tanggal Pengembalian</label>
+                    <input type="text" class="span5" name="tanggal_pengembalian" ng-model="tanggal_pengembalian" readonly/>
+                    
+                    <label>Kode Kupon</label>
+                    <input type="text" class="span5" name="kode_kupon" ng-change="coupon(); total();" ng-model="couponCode"/>
+                    
+                    
+                    <legend>Informasi Tarif</legend>
+                    <label>Harga Dasar per 14 Jam</label>
+                    <div ng-repeat="infTarif in infoTarif | filter: {'description': 'dasar'}">{{ infTarif.value }}</div> 
+                    <label>Tambahan luar kota per Jam</label>
+                    <div ng-repeat="infTarif in infoTarif | filter: {'description': 'luar kota'}">{{ infTarif.value }}</div>
+                    <label>Biaya overtime per jam</label>
+                    <div ng-repeat="infTarif in infoTarif | filter: {'description' : 'overtime'}">{{ infTarif.value }}</div>
+                    
+                    
+                    <legend>Informasi tarif order</legend>
+						  <ng-show ng-show="durasi_sewa">                    
+                    <label>Durasi sewa anda</label>
+                    <!--<div id="durasi_sewa_order">28 Jam</div>-->
+                    {{ durasi_sewa + " Jam" }}
+                    </ng-show>
+						  <label>PPN</label>                    
+						  <div ng-repeat="tax in taxes | filter: {'tax_name': 'PPN'}">{{ tax.tax_value + "%" }}</div>
+						  <label>PPH</label>                    
+                    <div ng-repeat="tax in taxes | filter: {'tax_name': 'PPH'}">{{ tax.tax_value + "%" }}</div>
+						  <ng-show ng-show="coupon_value">                    
+                    <label>Diskon Kupon</label>
+                    {{ coupon_value }}
+                    </ng-show>
+                    <ng-show ng-show="tujuan_sewa">
+                    <label>Tujuan</label>
+                    {{ vehicle.city_id == tujuan_sewa ? "Dalam Kota" : "Luar Kota" }}
+                    </ng-show>
+                    <label>Total yang harus dibayar</label>
+                    Rp {{ total_value }}
+                    <input type="hidden" name="total_order" value="500000">
+                    <br />
+                    ** Harga diatas sudah termasuk sopir, dan layanan sewa kami wajib menggunakan sopir.
+                    
+                    
+
+                    <div class="gap gap-mini"></div>
+                    <input type="submit" ng-show="loggedIn" class="btn btn-primary btn-block btn-large span6" value="Order">
+                    <input type="button" ng-hide="loggedIn"class="btn btn-primary btn-block btn-large span6" value="Order">
+                </form>
+            </div>
+        </div>
+        <div class="gap"></div>
+    </div>
+
+
+    <!-- //////////////////////////////////
+//////////////END PAGE CONTENT///////// 
+////////////////////////////////////-->
+
+<div ng-include="'footer.html'"></div>

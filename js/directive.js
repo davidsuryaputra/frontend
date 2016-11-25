@@ -1,33 +1,24 @@
-(function() {
-    'use strict';
-    var myApp = angular.module('app');
+rentalkika.directive('passwordConfirm', ['$parse', function ($parse) {
+ return {
+    restrict: 'A',
+    scope: {
+      matchTarget: '=',
+    },
+    require: 'ngModel',
+    link: function link(scope, elem, attrs, ctrl) {
+      var validator = function (value) {
+        ctrl.$setValidity('match', value === scope.matchTarget);
+        return value;
+      }
+ 
+      ctrl.$parsers.unshift(validator);
+      ctrl.$formatters.push(validator);
+      
+      // This is to force validator when the original password gets changed
+      scope.$watch('matchTarget', function(newval, oldval) {
+        validator(ctrl.$viewValue);
+      });
 
-    /*
-     A directive to enable two way binding of file field
-     */
-    myApp.directive('demoFileModel', function ($parse) {
-        return {
-            restrict: 'A', //the directive can be used as an attribute only
-
-            /*
-             link is a function that defines functionality of directive
-             scope: scope associated with the element
-             element: element on which this directive used
-             attrs: key value pair of element attributes
-             */
-            link: function (scope, element, attrs) {
-                var model = $parse(attrs.demoFileModel),
-                    modelSetter = model.assign; //define a setter for demoFileModel
-
-                //Bind change event on the element
-                element.bind('change', function () {
-                    //Call apply on scope, it checks for value changes and reflect them on UI
-                    scope.$apply(function () {
-                        //set the model value
-                        modelSetter(scope, element[0].files[0]);
-                    });
-                });
-            }
-        };
-    });
-})();
+    }
+  };
+}]);

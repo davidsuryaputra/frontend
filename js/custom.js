@@ -43,8 +43,7 @@ $(window).load(function() {
 
 
 $(function(){
-
-	$('#flexnav').flexNav();
+	//$('#flexnav').flexNav();
 });
 
 // Lighbox gallery
@@ -75,6 +74,7 @@ $('.popup-image').magnificPopup({
 });
 
 // Lighbox text
+/*
 $('.popup-text').magnificPopup({
     removalDelay: 500,
     closeBtnInside: true,
@@ -85,6 +85,7 @@ $('.popup-text').magnificPopup({
     },
     midClick: true
 });
+*/
 
 // Lightbox iframe
 $('.popup-iframe').magnificPopup({
