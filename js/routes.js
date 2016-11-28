@@ -20,10 +20,12 @@ rentalkika.config(function ($routeProvider) {
 		controller: 'RegisterPartnerController',
 		title: "Register Partner"
 	})
+	/*
 	.when('/dashboard', {
 		templateUrl : 'pages/backend/dashboard.html'
 		//controller : 'DashboardController'
 	})
+	*/
 	//order sewa mobil
 	.when('/sewa_mobil', {
 		templateUrl : 'pages/sewa_mobil.html',
@@ -34,6 +36,10 @@ rentalkika.config(function ($routeProvider) {
 		templateUrl: 'pages/order_sewa_mobil.html',
 		controller : 'OrderSewaMobilController',
 		title: "Atur order anda"	
+	})
+	.when('/order_sewa_complete/:order_sewa_number', {
+		templateUrl: 'pages/thanks_for_your_order.html',
+		title: "Thanks for your order" 
 	})
 	.otherwise({redirectTo : '/'});
 	

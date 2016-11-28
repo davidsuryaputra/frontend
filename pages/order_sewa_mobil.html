@@ -43,19 +43,19 @@
                     <input type="text" class="span5" id="tanggal_sewa" ng-model="tanggal_sewa">
                     
                     <label>Ambil di pool</label>
-                    <select class="span5" name="ambil_di_pool" ng-model="ambil_di_pool">
+                    <select class="span5" name="ambil_di_pool" ng-model="ambil_di_pool" ng-change="pool()">
                     	<option value="">Pilih!</option>
                     	<option value="1">Ya</option>
                     	<option value="0">Tidak, antar ke alamat saya</option>
                     </select>
                     
-                    <div id="alamat" style="display:none;" ng-model="alamat">
+                    <div id="alamat" ng-show="ambil_di_pool == 0">
                     <label>Alamat Pengiriman</label>
-                    <input type="text" class="span5" name="alamat">
+                    <input type="text" class="span5" name="alamat" ng-model="alamat">
                     </div>
                     
                     <label>Durasi Sewa</label>
-                    <select class="span5" name="durasi_sewa" id="durasi_sewa" ng-model="durasi_sewa" ng-change="total()">
+                    <select class="span5" name="durasi_sewa" id="durasi_sewa" ng-model="durasi_sewa" ng-change="total(); tanggal();">
                     	<option value="">Pilih</option>
                     	<option value="14">14 Jam</option>
                     	<option value="28">28 Jam</option>
@@ -66,7 +66,7 @@
                     <input type="text" class="span5" name="tanggal_pengembalian" ng-model="tanggal_pengembalian" readonly/>
                     
                     <label>Kode Kupon</label>
-                    <input type="text" class="span5" name="kode_kupon" ng-change="coupon(); total();" ng-model="couponCode"/>
+                    <input type="text" class="span5" name="kode_kupon" ng-blur="coupon(); total();" ng-model="couponCode"/>
                     
                     
                     <legend>Informasi Tarif</legend>

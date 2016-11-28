@@ -627,7 +627,7 @@ rentalkika.controller('RegisterPartnerController', function ($scope, $http, $loc
 
 });
 
-rentalkika.controller('OrderSewaMobilController', function ($filter, $scope, $http, $routeParams, sessionService, masterService, orderSewaService) {
+rentalkika.controller('OrderSewaMobilController', function ($filter, $location, $scope, $http, $routeParams, sessionService, masterService, orderSewaService) {
 	
 		$(function () {
     		$("#tanggal_sewa").datetimepicker({
@@ -635,6 +635,7 @@ rentalkika.controller('OrderSewaMobilController', function ($filter, $scope, $ht
 				setStartDate : new Date()    		
     		});
     		
+    		/*
     		$("select[name='ambil_di_pool']").on('change', function () {
 				if(this.value == "0"){
 					$("#alamat").show();				
@@ -642,7 +643,9 @@ rentalkika.controller('OrderSewaMobilController', function ($filter, $scope, $ht
 					$("#alamat").hide();
 				}    			
     		});
+    		*/
     		
+    		/*
     		$("#durasi_sewa").on('change', function () {
     			$("#durasi_sewa_order").html(this.value+" Jam");
     			var tanggal_sewa = moment($("input[id='tanggal_sewa']").val(), "DD-MM-YYYY HH:mm");
@@ -650,7 +653,22 @@ rentalkika.controller('OrderSewaMobilController', function ($filter, $scope, $ht
     			tanggal_sewa.add(this.value, 'hours');
     			$("input[name='tanggal_pengembalian']").val(tanggal_sewa.format('DD-MM-YYYY HH:mm'));
     		});
+    		*/
     	});
+    	
+		$scope.tanggal = function () {
+			var tanggal_sewa = moment($("input[id='tanggal_sewa']").val(), "DD-MM-YYYY HH:mm");
+				//console.log(tanggal_sewa);    			
+    			tanggal_sewa.add($scope.durasi_sewa, 'hours');
+    			//$("input[name='tanggal_pengembalian']").val(tanggal_sewa.format('DD-MM-YYYY HH:mm'));
+    			$scope.tanggal_pengembalian = tanggal_sewa.format('DD-MM-YYYY HH:mm');
+		};
+		
+		/*
+		$scope.pool = function () {
+			alert($scope.ambil_di_pool);
+		};
+		*/    	
     	
 		orderSewaService.vehicleDetail($routeParams.license_plate).then(function(response){
 			$scope.vehicle = response;
@@ -797,8 +815,9 @@ rentalkika.controller('OrderSewaMobilController', function ($filter, $scope, $ht
 			}else{
 				
 				var rent_start = moment($scope.tanggal_sewa, "DD-MM-YYYY HH:mm");
+				//console.log($scope.tanggal_pengembalian);
 				var rent_expired = moment($scope.tanggal_pengembalian, "DD-MM-YYYY HH:mm");
-				
+				//console.log($scope.alamat);
 				
 				
 				var ppn_obj = $filter('filter')($scope.taxes, {tax_name: "PPN"})[0];
@@ -875,11 +894,15 @@ rentalkika.controller('OrderSewaMobilController', function ($filter, $scope, $ht
 						}				
 					}
 					
+					console.log(data);
+					
 					$http.post('http://128.199.249.233:1337/parse/classes/tr_sewa', data, config).then(function (response) {
-						alert('Order berhasil dikirim');
+						//alert('Order berhasil dikirim');
+						$location.path('/order_sewa_complete/'+response.data.results.objectId);
 					}, function (error) {
 						console.log(error);
 					});
+					
 				
 					
 				}, function (error) {
@@ -895,4 +918,8 @@ rentalkika.controller('OrderSewaMobilController', function ($filter, $scope, $ht
 			
 		}
 		
+});
+
+rentalkika.controller('OrderSewaComplete', function ($scope, $location, $routeParams){
+	$scope.order_sewa_number = $routeParams.order_sewa_number;
 });

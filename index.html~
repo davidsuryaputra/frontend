@@ -31,6 +31,32 @@
     
     <!-- Backend Style -->
     
+      <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+	  <!-- bower:css -->
+	  <link rel="stylesheet" href="dev-release/lib/ionicons.css" >
+	  <link rel="stylesheet" href="dev-release/lib/angular-toastr.css" >
+	  <link rel="stylesheet" href="dev-release/lib/animate.css" >
+	  <!--<link rel="stylesheet" href="dev-release/lib/bootstrap.css" >-->
+	  <link rel="stylesheet" href="dev-release/lib/bootstrap-select.css" >
+	  <link rel="stylesheet" href="dev-release/lib/bootstrap-switch.css" >
+	  <link rel="stylesheet" href="dev-release/lib/bootstrap-tagsinput.css" >
+	  <link rel="stylesheet" href="dev-release/lib/font-awesome.css" >
+	  <link rel="stylesheet" href="dev-release/lib/fullcalendar.css" >
+	  <link rel="stylesheet" href="dev-release/lib/leaflet.css" >
+	  <link rel="stylesheet" href="dev-release/lib/angular-progress-button-styles.min.css" >
+	  <link rel="stylesheet" href="dev-release/lib/angular-chart.css" >
+	  <link rel="stylesheet" href="dev-release/lib/chartist.min.css" >
+	  <link rel="stylesheet" href="dev-release/lib/morris.css" >
+	  <link rel="stylesheet" href="dev-release/lib/ion.rangeSlider.css" >
+	  <link rel="stylesheet" href="dev-release/lib/ion.rangeSlider.skinFlat.css" >
+	  <link rel="stylesheet" href="dev-release/lib/textAngular.css" >
+	  <link rel="stylesheet" href="dev-release/lib/xeditable.css" >
+	  <link rel="stylesheet" href="dev-release/lib/style.css" >
+	  
+	  <link rel="stylesheet" href="dev-release/app/main.css">
+	  <!-- endbower -->
+	  <!-- endbuild -->
+    
     <!-- End Backend Style -->
     
 </head>
@@ -68,6 +94,7 @@
     <script src="js/fitvids.min.js"></script>
     <script src="js/mail.min.js"></script>
     <script src="js/flexnav.min.js"></script>
+    <script src="js/moment.min.js"></script>
     <script src="js/bootstrap-datetimepicker.js"></script>
 	 <script src="js/angular.min.js"></script>
 	 <script src="js/angular-route.js"></script>
@@ -84,10 +111,6 @@
     <!-- Custom scripts -->
     <script src="js/custom.js"></script>
     
-    <!-- Backend JS -->
-    
-    <!-- End Backend JS -->
-
 </body>
 
 </html>

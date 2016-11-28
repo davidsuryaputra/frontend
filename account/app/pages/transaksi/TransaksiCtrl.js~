@@ -1,0 +1,8 @@
+(function (){
+	'use strict';
+	
+	angular.module('BlurAdmin.pages.transaksi')
+		.controller('TransaksiCtrl', TransaksiCtrl);
+		
+	function TransaksiCtrl()
+})()

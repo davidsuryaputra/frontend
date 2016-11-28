@@ -1,0 +1,59 @@
+<div class="horizontal-scroll">
+  <div class="form-group select-page-size-wrap ">
+    <label>Rows on page
+      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+      </select>
+    </label>
+  </div>
+  <table class="table" st-table="smartTableData">
+    <thead>
+    <tr class="sortable ">
+      <th class="table-id" st-sort="nomor_order" st-sort-default="true">Nomor Order</th>
+      <th st-sort="nama_rental">Rental</th>
+      <th st-sort="mobil_rental">Mobil</th>
+      <th st-sort="tanggal_sewa">Tanggal Sewa</th>
+      <th st-sort="tanggal_berakhir">Tanggal Berakhir</th>
+      <th st-sort="tanggal_pengembalian">Tanggal Pengembalian</th>
+      <th st-sort="status">Status</th>
+      <th>Option</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th><input st-search="nama_rental" placeholder="Cari nama rental" class="input-sm form-control search-input"
+                 type="search"/></th>
+      <th><input st-search="mobil_rental" placeholder="Cari mobil rental" class="input-sm form-control search-input"
+                 type="search"/></th>
+      <th><input st-search="tanggal_sewa" placeholder="Cari tanggal sewa" class="input-sm form-control search-input"
+                 type="search"/></th>
+      <th><input st-search="tanggal_berakhir" placeholder="Cari tanggal berakhir" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th><input st-search="tanggal_pengembalian" placeholder="Cari tanggal pengembalian" class="input-sm form-control search-input" type="search"/>
+      </th>
+       <th><input st-search="status" placeholder="Cari status" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th></th>
+      
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in sewaResults">
+      <td class="table-id">{{item.nomor_order}}</td>
+      <td>{{item.nama_rental}}</td>
+      <td>{{item.mobil_rental}}</td>
+      <td>{{item.tanggal_sewa}}</td>
+      <td>{{item.tanggal_berakhir}}</td>
+      <td>{{item.tanggal_pengembalian}}</td>
+      <td>{{item.status}}</td>
+      <td><button type="button" class="btn btn-primary" ng-click="">detail</button> <button type="button" class="btn btn-primary btn-sm" ng-click="">konfirmasi</button></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
