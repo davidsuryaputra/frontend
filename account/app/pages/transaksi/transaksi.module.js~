@@ -16,7 +16,7 @@
 				title: 'Transaksi',
 				sidebarMeta: {
 					icon: 'ion-grid',
-					order: 1				
+					order: 100				
 				}
 			});
 		}

@@ -131,6 +131,8 @@
 <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
 <script src="bower_components/jstree/dist/jstree.js"></script>
 <script src="bower_components/ng-js-tree/dist/ngJsTree.js"></script>
+<script src="bower_components/fileUpload/ng-file-upload.js"></script>
+<script src="bower_components/fileUpload/ng-file-upload-shim.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -274,8 +276,13 @@
 
 <!-- page ku -->
 <script src="app/pages/transaksi/transaksi.module.js"></script>
-<script src="app/pages/transaksi/sewa/SewaCtrl.js"></script>
 <script src="app/pages/transaksi/sewa/sewa.module.js"></script>
+<script src="app/pages/transaksi/sewa/SewaCtrl.js"></script>
+
+<!-- factory ku -->
+
+<script src="bower_components/custom/service.js"></script>
+
 
 
 <!-- endinject -->

@@ -349,7 +349,9 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 			sessionService.set('sessionToken', response.data.sessionToken);
 			sessionService.set('user_id', response.data.objectId);
 				
-			$location.path('/');
+			//$location.path('/');
+			window.location.href = "/";
+			
 			$scope.loggedIn = authService.app_logged_in();
 			console.log($scope.loggedIn);
 		}, function (error) {
@@ -366,10 +368,10 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 	$scope.logout = function () {
 		
 		authService.logout().then(function (response) {
-			console.log('anuu');
+			//console.log('anuu');
 			$rootScope.loggedIn = false;
 			$location.path('/xyz');
-			console('logout success');
+			console.log('logout success');
 		}, function (error) {
 			console.log(error);
 		});
@@ -635,6 +637,14 @@ rentalkika.controller('OrderSewaMobilController', function ($filter, $location, 
 				setStartDate : new Date()    		
     		});
     		
+    		function logindialog() {
+    			
+    			/*
+    			
+		    	*/
+    		};
+    		
+    		
     		/*
     		$("select[name='ambil_di_pool']").on('change', function () {
 				if(this.value == "0"){
@@ -655,6 +665,18 @@ rentalkika.controller('OrderSewaMobilController', function ($filter, $location, 
     		});
     		*/
     	});
+    	
+    	
+    	$scope.logindialog = function () {
+    		$.magnificPopup.open({
+		        items: {
+		            src: '#login-dialog' 
+		        },
+		        type: 'inline'
+		   });
+		};
+		
+		
     	
 		$scope.tanggal = function () {
 			var tanggal_sewa = moment($("input[id='tanggal_sewa']").val(), "DD-MM-YYYY HH:mm");

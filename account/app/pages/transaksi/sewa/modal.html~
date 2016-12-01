@@ -1,0 +1,19 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">Detail Sewa #{{ tr_sewa.nomor_order }}</h4>
+  </div>
+  <div class="modal-body">
+    Kode Kupon : {{ tr_sewa.kode_kupon }}<br />
+    Asal Kota : {{ tr_sewa.asal_kota }}<br />
+    Tujuan Kota : {{ tr_sewa.tujuan_kota }}<br />
+    Alamat Pengiriman : {{ tr_sewa.alamat_pengiriman }}<br />
+    Tanggal Pengembalian : {{ tr_sewa.tanggal_pengembalian }}<br />
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="$dismiss()">OK</button>
+  </div>
+</div>

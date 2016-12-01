@@ -1,7 +1,8 @@
 (function () {
 	'use strict';
 	angular.module('BlurAdmin.pages.transaksi', [
-		'BlurAdmin.pages.transaksi.sewa'
+		'BlurAdmin.pages.transaksi.sewa',
+		'ngFileUpload'
 	])
 		.config(routeConfig)
 		

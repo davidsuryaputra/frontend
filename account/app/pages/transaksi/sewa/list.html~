@@ -14,7 +14,7 @@
       <th st-sort="mobil_rental">Mobil</th>
       <th st-sort="tanggal_sewa">Tanggal Sewa</th>
       <th st-sort="tanggal_berakhir">Tanggal Berakhir</th>
-      <th st-sort="tanggal_pengembalian">Tanggal Pengembalian</th>
+      <th st-sort="total">Total</th>
       <th st-sort="status">Status</th>
       <th>Option</th>
     </tr>
@@ -28,7 +28,7 @@
                  type="search"/></th>
       <th><input st-search="tanggal_berakhir" placeholder="Cari tanggal berakhir" class="input-sm form-control search-input" type="search"/>
       </th>
-      <th><input st-search="tanggal_pengembalian" placeholder="Cari tanggal pengembalian" class="input-sm form-control search-input" type="search"/>
+      <th><input st-search="total" placeholder="Cari total" class="input-sm form-control search-input" type="search"/>
       </th>
        <th><input st-search="status" placeholder="Cari status" class="input-sm form-control search-input" type="search"/>
       </th>
@@ -43,9 +43,11 @@
       <td>{{item.mobil_rental}}</td>
       <td>{{item.tanggal_sewa}}</td>
       <td>{{item.tanggal_berakhir}}</td>
-      <td>{{item.tanggal_pengembalian}}</td>
+      <td>{{item.total }}</td>
       <td>{{item.status}}</td>
-      <td><button type="button" class="btn btn-primary" ng-click="">detail</button> <button type="button" class="btn btn-primary btn-sm" ng-click="">konfirmasi</button></td>
+      <td>
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" ng-click="open('{{ item.nomor_order }}')">detail</button>
+      <a href="{{ location.path() }}/konfirmasi/{{ item.nomor_order }}" class="btn btn-primary btn-sm" ng-click="">konfirmasi</a></td>
     </tr>
     </tbody>
     <tfoot>

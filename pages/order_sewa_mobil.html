@@ -106,7 +106,8 @@
 
                     <div class="gap gap-mini"></div>
                     <input type="submit" ng-show="loggedIn" class="btn btn-primary btn-block btn-large span6" value="Order">
-                    <input type="button" ng-hide="loggedIn"class="btn btn-primary btn-block btn-large span6" value="Login To Order">
+                    <!--<input type="button" ng-hide="loggedIn" class="btn btn-primary btn-block btn-large span6" ng-click="logindialog()" value="Login To Order">-->
+                    <a href="#login-dialog" class="btn btn-primary btn-block btn-large span6 popup-text" style="margin-left:0;" data-effect="mfp-move-from-top" ng-hide="loggedIn">Login To Order</a>
                 </form>
             </div>
         </div>

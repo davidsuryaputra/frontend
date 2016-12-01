@@ -86,7 +86,7 @@ rentalkika.factory('authService', function (sessionService, $rootScope, $q, $htt
 	
 	authService.logout = function () {
 		
-		var defer = $q.defer();
+		//var defer = $q.defer();
 		
 		var configLogout = { 
 		
@@ -98,7 +98,7 @@ rentalkika.factory('authService', function (sessionService, $rootScope, $q, $htt
 		
 		var data = {};
 	
-		$http.post('http://128.199.249.233:1337/parse/logout', data, configLogout).then(function (response) {
+		return $http.post('http://128.199.249.233:1337/parse/logout', data, configLogout).then(function (response) {
 			sessionService.destroy('isLoggedIn');	
 			sessionService.destroy('role');	
 			sessionService.destroy('sessionToken');
@@ -107,13 +107,15 @@ rentalkika.factory('authService', function (sessionService, $rootScope, $q, $htt
 			sessionService.destroy('fb_access_token');
 			sessionService.destroy('fb_expiration_date');
 			$rootScope.loggedIn = false;
-			defer.resolve("Logout success");		
+			//defer.resolve("Logout success");	
+			return response;	
 		
 		}, function (error) {
-			defer.reject("Logout error");
+			//defer.reject("Logout error");
+			return error;
 		});
 		
-		return defer.promise;
+		//return defer.promise;
 		
 		//$window.location.href = "/";
 	
@@ -180,12 +182,28 @@ rentalkika.factory('masterService', function ($http, $q) {
 			return response.data.results;
 		}, function (error) {
 			//defer.reject(error);
-			return response.data.results;
+			return error;
 		});
 		
 		//return defer.promise;
 		
 	};
+	
+	masterService.bank_company = function () {
+			
+		var config = {
+			headers: {
+				'X-Parse-Application-Id' : parseAppId
+			}		
+		}
+		
+		return $http.get('http://128.199.249.233:1337/parse/classes/bank', config).then(function (response) {
+			return response.data.results;
+		}, function (error) {
+			return error;
+		});			
+			
+	} 
 	
 	return masterService;
 	

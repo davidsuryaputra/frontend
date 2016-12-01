@@ -9,12 +9,26 @@
 			.state('transaksi.sewa', {
 				url: '/sewa',
 				templateUrl: 'app/pages/transaksi/sewa/sewa.html',
-				//template: '<div class="abc"></div>',			
 				controller: 'SewaCtrl',
 				title: 'Sewa',
 				sidebarMeta: {
 					order: 0
 				}
+			})
+			.state('transaksi.sewa.konfirmasi', {
+				url: '/konfirmasi/:nomor_order_sewa',
+				templateUrl: 'app/pages/transaksi/sewa/konfirmasi.html',
+				//template: 'halo ini konfirmasi',
+				/*				
+				controller: function ($scope) {
+					$scope.abc = "aaabbbcc";				
+				},
+				*/
+				controller: 'KonfirmasiCtrl',
+				title: 'Konfirmasi Sewa',
+				sidebarMeta: {
+					order: 0				
+				}			
 			});
 		
 	}	
