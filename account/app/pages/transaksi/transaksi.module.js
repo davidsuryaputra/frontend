@@ -10,7 +10,8 @@
 			$stateProvider
 			.state('transaksi', {
 				url: '/transaksi',
-				template: '<ui-view></ui-view>',
+				template: '<div ui-view></div>',
+				//template: 'this is transaksi page',
 				abstract: true,
 				//templateUrl: 'app/pages/transaksi/transaksi.html',
 				//controller: 'TransaksiCtrl',

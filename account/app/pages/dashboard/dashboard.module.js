@@ -15,10 +15,15 @@
           url: '/dashboard',
           templateUrl: 'app/pages/dashboard/dashboard.html',
           title: 'Dashboard',
+          //css: 'app/main.css',
           sidebarMeta: {
             icon: 'ion-android-home',
             order: 0,
           },
+          authenticate: true,
+          name: "dashboard",
+          role: ['customer', 'partner', 'admin'],
+          
         });
   }
 

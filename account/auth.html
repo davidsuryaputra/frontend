@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="BlurAdminAuth" ng-controller="BlurAdminAuth">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blur Admin</title>
+  <title>Sign In Dashboard</title>
 
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
 
@@ -45,34 +45,40 @@
 <body>
 <main class="auth-main">
   <div class="auth-block">
-    <h1>Sign in to Blur Admin</h1>
-    <a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a>
+    <h1>Sign in to Rental Kika</h1>
+    <!--<a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a>-->
 
     <form class="form-horizontal">
       <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+        <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
 
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+          <input type="text" class="form-control" id="inputEmail3" placeholder="Your username" ng-model="account.username">
         </div>
       </div>
       <div class="form-group">
         <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+          <input type="password" class="form-control" id="inputPassword3" placeholder="Password" ng-model="account.password">
         </div>
       </div>
+      
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default btn-auth">Sign in</button>
-          <a href class="forgot-pass">Forgot password?</a>
+          <button type="button" class="btn btn-default btn-auth" ng-click="login()">Sign in</button>
+          <!--<a href class="forgot-pass">Forgot password?</a>-->
         </div>
       </div>
     </form>
 
-    <div class="auth-sep"><span><span>or Sign in with one click</span></span></div>
+    <div class="auth-sep" ><span><span><button type="button" ng-click="fbLogin()" class="btn btn-default btn-auth">or Sign in with Facebook</button></span></span></div>
 
+	 <div class="alert alert-danger" ng-show="error">
+      	<strong>Error</strong> {{ error }}
+    </div>
+    
+	 <!--	
     <div class="al-share-auth">
       <ul class="al-share clearfix">
         <li><i class="socicon socicon-facebook" title="Share on Facebook"></i></li>
@@ -80,7 +86,15 @@
         <li><i class="socicon socicon-google" title="Share on Google Plus"></i></li>
       </ul>
     </div>
+    -->
   </div>
 </main>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="app/auth.js"></script>
+
+
 </body>
 </html>

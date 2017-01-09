@@ -1549,7 +1549,7 @@ a.see-all-icons {
         color: #7d7d7d;
         opacity: 0.9; }
     .modal .modal-dialog .modal-body p, .modal .modal-dialog .modal-body div, .modal .modal-dialog .modal-body span {
-      color: #7d7d7d; }
+      color: #333; }
   .modal .modal-header {
     border: none; }
     .modal .modal-header .close {

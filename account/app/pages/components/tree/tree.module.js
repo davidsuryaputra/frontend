@@ -22,6 +22,9 @@
           sidebarMeta: {
             order: 200,
           },
+          authenticate: true,
+          role: "partner",
+          name: "components.tree",
         });
   }
 

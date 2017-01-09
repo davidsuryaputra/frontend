@@ -25,6 +25,8 @@
           url: '/inputs',
           templateUrl: 'app/pages/form/inputs/inputs.html',
           title: 'Form Inputs',
+          authenticate: true,
+          role: ['admin'],
           sidebarMeta: {
             order: 0,
           },

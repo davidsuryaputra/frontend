@@ -10,6 +10,7 @@
 
   /** @ngInject */
   function routeConfig($stateProvider,$urlRouterProvider) {
+  	
     $stateProvider
         .state('components.mail', {
           url: '/mail',
@@ -21,6 +22,10 @@
           sidebarMeta: {
             order: 0,
           },
+          name: "components.mail",
+          authenticate: true,
+          role: "customer",
+          
         }).state('components.mail.label', {
           url: '/:label',
           templateUrl: 'app/pages/components/mail/list/mailList.html',
@@ -34,6 +39,7 @@
           controller: "MailDetailCtrl",
           controllerAs: "detailCtrl"
         });
+        
     $urlRouterProvider.when('/components/mail','/components/mail/inbox');
   }
 

@@ -5,15 +5,15 @@ rentalkika.factory('sessionService', function () {
 	var sessionService = {};
 	
 	sessionService.set = function (key, value) {
-		return sessionStorage.setItem(key, value);
+		return localStorage.setItem(key, value);
 	};
 	
 	sessionService.get = function (key) {
-		return sessionStorage.getItem(key);
+		return localStorage.getItem(key);
 	};
 		
 	sessionService.destroy = function (key) {
-		return sessionStorage.removeItem(key);
+		return localStorage.removeItem(key);
 	};	
 	
 	return sessionService;

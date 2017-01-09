@@ -19,6 +19,9 @@
             icon: 'ion-ios-pulse',
             order: 100,
           },
+          name: "components.timeline",
+          authenticate: true,
+          role: "admin",
       });
   }
 })();

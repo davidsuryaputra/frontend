@@ -4,35 +4,132 @@
  */
 (function () {
   'use strict';
+  
+  var parseAppId = 'gMKfl1wDyk3m6I5x0IrIjJyI87sumz58';
 
   angular.module('BlurAdmin.pages.dashboard')
-      .controller('DashboardPieChartCtrl', DashboardPieChartCtrl);
+      .controller('DashboardPieChartCtrl', DashboardPieChartCtrl)
+      .factory('dashboardFactory', dashboardFactory);
 
   /** @ngInject */
-  function DashboardPieChartCtrl($scope, $timeout, baConfig, baUtil) {
+	
+  function dashboardFactory($http) {
+  	
+  		var dashboardFactory = {};
+
+		dashboardFactory.totalCustomer = function () {
+			
+			var config = {
+				headers: {
+					'X-Parse-Application-Id' : parseAppId			
+				},
+				params: {
+					count: 1,
+					limit: 0,
+					where: {
+						role_name: 'customer',
+					}
+				}
+			}
+			
+			return $http.get('http://128.199.249.233:1337/parse/users', config).then(function (response) {
+				return response.data.count;	
+			}, function (error) {
+				return error;			
+			});
+				
+		}  	
+		
+		dashboardFactory.totalPartner = function () {
+			var config = {
+				headers: {
+					'X-Parse-Application-Id' : parseAppId				
+				},
+				params: {
+					count: 1,
+					limit: 0,
+					where: {
+						role_name: 'partner',					
+					}				
+				}
+			}	
+			
+			return $http.get('http://128.199.249.233:1337/parse/users', config).then(function (response) {
+				return response.data.count
+			}, function (error){
+				return error;
+			});	
+		}	
+  		
+  		return dashboardFactory;
+  		
+  }
+  
+  
+  function DashboardPieChartCtrl($scope, $q, $timeout, baConfig, baUtil, dashboardFactory) {
+  	//$scope.totalCustomer = 6;
+   //console.log(dashboardFactory.totalCustomer());
+  	
+  	
+  	var totalCustomerPromise = dashboardFactory.totalCustomer().then(function (response){
+      	return response;
+      	//return console.log(response);
+      });
+      
+   var totalPartnerPromise = dashboardFactory.totalPartner().then(function (response) {
+   		return response;
+   });
+      
+      
     var pieColor = baUtil.hexToRGB(baConfig.colors.defaultText, 0.2);
+
+    $q.all({
+    	totalCustomer: totalCustomerPromise,
+    	totalPartner: totalPartnerPromise
+    }).then(function (response) {
+    	console.log(response);
+    	
+    	$scope.charts = [
+    	{
+    		color: pieColor,
+    		description: 'Jumlah Konsumen',
+    		stats: response.totalCustomer,
+    		icon: 'person'
+    	},
+		{
+			color: pieColor,
+			description: 'Jumlah Partner',
+			stats: response.totalPartner,
+			icon: 'face'
+		}    	
+    	];
+    	
+    
+    });
+    /*
     $scope.charts = [{
       color: pieColor,
-      description: 'New Visits',
-      stats: '57,820',
+      description: 'Total Transaksi',
+      stats: '0',
       icon: 'person',
     }, {
       color: pieColor,
-      description: 'Purchases',
-      stats: '$ 89,745',
+      description: 'Jumlah Konsumen',
+      stats: '0',
       icon: 'money',
     }, {
       color: pieColor,
-      description: 'Active Users',
-      stats: '178,391',
+      description: 'Partner Sewa',
+      stats: '0',
       icon: 'face',
     }, {
       color: pieColor,
-      description: 'Returned',
-      stats: '32,592',
+      description: 'Partner Shuttle',
+      stats: '0',
       icon: 'refresh',
     }
     ];
+    */
 
     function getRandomArbitrary(min, max) {
       return Math.random() * (max - min) + min;

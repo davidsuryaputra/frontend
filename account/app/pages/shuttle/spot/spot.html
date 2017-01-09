@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12">
+    <div ba-panel ba-panel-title="Smart Table With Filtering, Sorting And Pagination" ba-panel-class="with-scroll">
+      <div class="horizontal-scroll">
+        <div class="form-group">
+          <label>Rows on page
+            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                    ng-model="SpotPageVm.smartTablePageSize" ng-options="i for i in [2,5,10]">
+            </select>
+          </label>
+          <button type="button" class="btn btn-info" data-toggle="modal" ng-click="open('app/pages/shuttle/spot/addSpot.html', 'md')">Add New</button>
+
+        </div>
+
+        <table class="table" st-table="SpotPageVm.spots">
+          <thead>
+          <tr class="sortable ">
+            <th st-sort="name">Nama</th>
+            <th st-sort="address">Alamat</th>
+            <th st-sort="kota">Kota</th>
+            <th st-sort="kecamatan">Kecamatan</th>
+			<th></th>
+          </tr>
+          <tr>
+            <th><input st-search="name" placeholder="Search Nama" class="input-sm form-control search-input"
+                       type="search"/></th>
+            <th><input st-search="address" placeholder="Search Alamat" class="input-sm form-control search-input"
+                       type="search"/></th>
+            <th><input st-search="kota" placeholder="Search Kota" class="input-sm form-control search-input"
+                       type="search"/></th>
+            <th><input st-search="kecamatan" placeholder="Search Kecamatan" class="input-sm form-control search-input" type="search"/>
+            </th>
+			<th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="spot in SpotPageVm.spots">
+            <td>{{spot.name}}</td>
+            <td>{{spot.address}}</td>
+            <td>{{spot.kota}}</td>
+            <td>{{spot.kecamatan}}</td>
+			<td><a href="#" class="glyphicon glyphicon-remove" title="Delete"></a></td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="6" class="text-center">
+              <div st-pagination="" st-items-by-page="SpotPageVm.smartTablePageSize" st-displayed-pages="5"></div>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>

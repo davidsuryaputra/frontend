@@ -130,24 +130,25 @@
 		
 		$http.get('http://128.199.249.233:1337/parse/classes/tr_sewa/'+nomor_order, config).then(function (response) {
 			
-		if(typeof(response.data.coupon_id.coupon_code) == 'undefined'){
+		if(typeof(response.data.coupon_id) === 'undefined'){
 			var kode_kupon = "Tanpa kupon";
 		}else{
 			var kode_kupon = response.data.coupon_id.coupon_code;
 		}
 		
-		if(typeof(response.data.rent_return) == 'undefined'){
+		if(typeof(response.data.rent_return) === 'undefined'){
 			var tanggal_pengembalian = "Belum dikembalikan";				
 		}else {
 			var date_return =  moment(response.data.rent_return.iso).format("DD-MM-YYYY HH:mm");
 			var tanggal_pengembalian = date_return;
 		}
 		
-		if(typeof(response.data.alamat_pengiriman) == 'undefined'){
+		if(typeof(response.data.alamat_pengiriman) === 'undefined'){
 			var alamat_pengiriman = "Di ambil dipool";				
 		}else {
 			var alamat_pengiriman = response.data.alamat_pengiriman;
 		}
+				
 				
 		var item = {
 			nomor_order: response.data.objectId,
@@ -166,7 +167,7 @@
 			status: response.data.status
 		};
 			
-		//console.log(response);
+		//console.log(item);
 		
 		$uibModal.open({
 			templateUrl: "app/pages/transaksi/sewa/modal.html",

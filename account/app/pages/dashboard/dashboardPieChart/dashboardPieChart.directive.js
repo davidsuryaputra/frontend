@@ -12,8 +12,14 @@
   function dashboardPieChart() {
     return {
       restrict: 'E',
-      controller: 'DashboardPieChartCtrl',
-      templateUrl: 'app/pages/dashboard/dashboardPieChart/dashboardPieChart.html'
+      controller: "DashboardPieChartCtrl",
+      templateUrl: 'app/pages/dashboard/dashboardPieChart/dashboardPieChart.html',
+      resolve: {
+      	totalCustomer: function (dashboardFactory) {
+      		return dashboardFactory.totalCustomer();
+      	}
+      }
+      
     };
   }
 })();

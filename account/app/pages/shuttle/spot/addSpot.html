@@ -1,0 +1,40 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+  </div>
+  <div class="modal-body" style="color:#333;">
+    <form>
+      <div class="form-group">
+        <label for="input01">Nama</label>
+        <input type="text" class="form-control" id="input01" placeholder="Text" ng-model="SpotAddVm.spotName">
+      </div>
+      <div class="form-group">
+        <label for="input02">Alamat</label>
+        <input type="text" class="form-control" id="input02" placeholder="Text" ng-model="SpotAddVm.address">
+      </div>
+      <div class="form-group">
+        <label for="kota">Kota</label>
+        <select class="form-control selectpicker with-search" id="kota" data-live-search="true" title="Select With Search" selectpicker
+                ng-model="SpotAddVm.citySelected"
+                ng-options="city.kota for city in SpotAddVm.cities" ng-change="SpotAddVm.searchKecamatan()">
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="kecamatan">Kecamatan</label>
+        <select class="form-control selectpicker with-search" id="kecamatan" data-live-search="true" title="Select With Search" selectpicker
+                ng-model="SpotAddVm.kecamatanSelected"
+                select-model="SpotAddVm.resultsKecamatan"
+                ng-options="resKecamatan.kecamatan for resKecamatan in SpotAddVm.resultsKecamatan" ng-disabled="!SpotAddVm.citySelected">
+        </select>
+      </div>
+      <input type="button" class="btn btn-info" value="Submit" ng-click="SpotAddVm.coba()">
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-primary" ng-click="$dismiss()">Save changes</button> -->
+  </div>
+</div>

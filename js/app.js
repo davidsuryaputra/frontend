@@ -279,6 +279,9 @@ rentalkika.controller('LoginController', function ($rootScope, $scope, $http, $r
 	    midClick: true
 	});
 	
+	$scope.dashboard = function () {
+		window.location.href = "http://" + window.location.host + "/account";
+	};
 	
 	$scope.login = { username: "", password: "" };
 	

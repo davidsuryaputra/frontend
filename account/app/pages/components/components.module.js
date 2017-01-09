@@ -13,7 +13,12 @@
       .config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($stateProvider) {
+  function routeConfig($stateProvider, roleProvider) {
+  	
+  	//console.log(roleProvider.currentRole());
+  	//http://jsfiddle.net/thomporter/zjFp4/1/
+  	if(roleProvider.currentRole() == "partner"){
+  	
     $stateProvider
         .state('components', {
           url: '/components',
@@ -22,9 +27,12 @@
           title: 'Components',
           sidebarMeta: {
             icon: 'ion-gear-a',
-            order: 100,
+            order: 200,
           },
         });
+    
+   }
+   
   }
 
 })();
